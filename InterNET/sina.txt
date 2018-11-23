@@ -1,0 +1,1461 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="baidu-site-verification" content="e79jhjtGfX" />
+    <title>首页-百度营销中心</title>
+
+<link rel="stylesheet" href="http://yingxiao.baidu.com/topic/testjqr/css/index.css" type="text/css" media="screen" />
+<script type="text/javascript" src="http://yingxiao.baidu.com/topic/testjqr/js/jquery-1.7.2.min.js"></script>
+
+<link href="http://pro.baidu.com/product/site/jun_newIndex/css/index20150201.css" rel="stylesheet" type="text/css" />
+<style>
+        .wrap-first .banner-pic {
+            width: 740px;
+            height: 370px;
+        }
+        .wrap .slide {
+            width: 442px;
+            height: 370px;
+            position: absolute;
+            left: 748px;
+            top: 0;
+            overflow: hidden;
+        }
+        .wrap .slide .marqu {
+            position: relative;
+            width: 384px;
+            height: 45px;
+            line-height: 45px;
+            border: 1px solid #e8e8e8;
+            font-size: 16px;
+            font-family: "Microsoft YaHei";
+            color: #666;
+            font-weight: 400;
+            padding-left: 56px;
+            overflow: hidden;
+        }
+        .slide .marqu-title {
+            position: absolute;
+            display: inline-block;
+            height: 45px;
+            line-height: 45px;
+            left: 10px;
+            font-family: "Microsoft YaHei";
+            color: #00B0C9;
+            font-weight: 700;
+            font-size: 16px;
+            vertical-align: middle;
+            text-align: center;
+        }
+        .marqu .abtn{height:20px;top:0;visibility: hidden;}
+        .newslist{
+            height: 45px;
+            line-height: 45px;
+            overflow: hidden;
+            position: relative;
+        }
+        .newslist ul{position:absolute;left:0px;top:0px;width:380px}
+        .newslist ul a {
+            display: block;
+            width: 380px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+        .newslist ul a:before {
+            display: inline-block;
+            margin-right: 6px;
+            content: "";
+            margin-bottom: 4px;
+            width: 4px;
+            height: 4px;
+            background-color: #00b0c9;
+        }
+        .wrap .slide .tab {
+            width: 440px;
+            height: 40px;
+            font-size: 0;
+            margin-top: 8px;
+            color: #666;
+            font-weight: 700;
+            font-family: "Microsoft YaHei";
+            border: 1px solid #e8e8e8;
+            border-bottom: 0;
+        }
+        .slide .tab > span {
+            position: relative;
+            display: inline-block;
+            height: 40px;
+            line-height: 40px;
+            font-size: 16px;
+            border-right: 1px solid #e8e8e8;
+            width: 109px;
+            text-align: center;
+            cursor: pointer;
+        }
+        .slide .tab > span:last-child {
+            border-right: 0;
+            width: 110px;
+        }
+        .slide .tab .tab-first,
+        .slide .tab .tab-two,
+        .slide .tab .tab-three,
+        .slide .tab .tab-four {
+            position: absolute;
+            left: 48px;
+            top: 40px;
+            width: 0;
+            height: 0;
+            border-left: 7px solid transparent;
+            border-right: 7px solid transparent;
+        }
+        .slide .tab .tab-nav-active {
+           border-top: 7px solid #00b0c9;
+        }
+        .slide .tab-content {
+            position: absolute;
+            left: 0
+            top: 0;
+            width: 440px;
+            height: 134px;
+            border: 1px solid #aadce7;
+            border-top: 1px solid #00b0c9;
+            overflow: hidden;
+
+        }
+
+        .slide .tab-content-active {
+            color: #fff;
+            background-color: #00b0c9;
+        }
+        .slide .tab-content-first {
+            display: block;
+        }
+        .slide .tab-content-two {
+            display: none;
+        }
+        .slide .tab-content-three {
+            display: none;
+        }
+        .slide .tab-content-four {
+            display: none;
+        }
+        .slide .tab-content > ul {
+            margin-top: 24px;
+            width: 420px;
+            height: 110px;
+            padding-left: 20px;
+            font-size: 0;
+        }
+        .slide .tab-content li,
+        .slide .tab-content a {
+            position: relative;
+            display: inline-block;
+            width: 208px;
+            height: 36px;
+            line-height: 36px;
+            text-align: center;
+            color: #666;
+            font-weight: 400;
+            font-family: "Microsoft YaHei";
+            text-overflow: ellipsis;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+        .slide .tab-content .tab-content-tip {
+            position: absolute;
+            display: inline-block;
+            background-color: #00b0c9;
+            width: 4px;
+            height: 4px;
+            left: 0;
+            top: 16px;
+        }
+        .slide .tab-content a {
+            text-align: left;
+            width: 200px;
+            font-size: 14px;
+            padding-left: 6px;
+        }
+        .slide .tab-content a:hover {
+            color: #00b0c9;
+        }
+        .slide .slide-tab-last {
+            position: absolute;
+            top: 242px;
+            left: 0;
+            width: 440px;
+            height: 126px;
+            border: 1px solid #e8e8e8;
+            overflow: hidden;
+        }
+        .slide .slide-tab-last > h1 {
+            position: relative;
+            left: 0;
+            top: 0;
+            font-size: 16px;
+            color: #666;
+            font-weight: 700;
+            font-family: "Microsoft YaHei";
+            width: 110px;
+            height: 40px;
+            line-height: 40px;
+            text-align: center;
+            background-color: #00b0c9;
+            color: #fff;
+        }
+        .slide .slide-tab-last .slide-last-wrap {
+            position: relative;
+            margin-top: 24px;
+            padding-left: 18px;
+        }
+        .slide-last-wrap .slide-last-title {
+            font-size: 16px;
+            color: #333;
+            font-weight: 700;
+            cursor: pointer;
+        }
+        .slide-last-wrap .slide-last-content {
+            width: 358px;
+            text-overflow: ellipsis;
+            font-family: "Microsoft YaHei";
+            margin-top: 6px;
+            font-size: 14px;
+            color: #666;
+            font-weight: 400;
+            white-space: nowrap;
+            overflow: hidden;
+        }
+        .slide-last-wrap > a {
+            position: absolute;
+            right: 20px;
+            bottom: 0;
+            color: #00b0c9;
+
+        }
+        .slide .slide-tab-last > a {
+            display: inline-block;
+            height: 39px;
+            line-height: 39px;
+            border-right: 1px solid #000;
+            width: 147px;
+            font-size: 18px;
+            text-align: center;
+        }
+        .slide .slide-tab-last > a:hover {
+            color: red;
+        }
+        .slide .slide-tab-last > span:last-child {
+            border-right: 0;
+        }
+        .wrap-first .banner-nav {
+            position: relative;
+            width: 1188px;
+            height: 150px;
+            margin-top: 16px;
+            border: 1px solid #e8e8e8;
+            letter-spacing: -3px;
+            font-size: 0;
+
+        }
+        .wrap-first .banner-nav .banner-nav-item {
+            position: relative;
+            display: inline-block;
+            width: 246px;
+            border-right: 1px solid #e8e8e8;
+            height: 150px;
+            overflow: hidden;
+            letter-spacing: 0;
+        }
+        .banner-nav .banner-nav-item a {
+            position: absolute;
+            right: 0;
+            bottom: 0;
+        }
+        .wrap-first .banner-nav .banner-nav-item:nth-of-type(1) {
+            width: 245px;
+        }
+        .wrap-first .banner-nav .banner-nav-item:nth-of-type(4) {
+            width: 223px;
+        }
+        .wrap-first .banner-nav .banner-nav-item:nth-of-type(5) {
+            width: 220px;
+            border-right: 0;
+        }
+        .banner-nav .banner-nav-item .banner-nav-title {
+            position: relative;
+            width: 220px;
+            margin-left: 14px;
+            margin-top: 14px;
+            height: 20px;
+            line-height: 20px;
+            font-family: "Microsoft YaHei";
+            font-size: 18px;
+            color: #333;
+            font-weight: 700;
+            cursor: pointer;
+        }
+        .banner-nav-item .banner-nav-title a {
+            display: block;
+            height: 100%;
+            width: 100%;
+         }
+        .banner-nav .banner-nav-item .banner-nav-subtitle {
+            width: 220px;
+            margin-left: 14px;
+            margin-top: 6px;
+            height: 20px;
+            line-height: 20px;
+            font-family: "Microsoft YaHei";
+            font-size: 14px;
+            color: #999;
+            font-weight: 400;
+        }
+        .banner-nav .banner-nav-item > img {
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            width: 180px;
+            height: 92px;
+            background-size: contain;
+        }
+        .banner-nav .banner-nav-item > img:hover {
+            cursor:pointer;
+        }
+    </style>
+    <link rel="shortcut icon" type="image/x-icon" href="http://www.baidu.com/favicon.ico">
+    <script>
+     var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?e1b156b0748bcb794a4a655115f1d5d8";
+      var s = document.getElementsByTagName("script")[0]; 
+     s.parentNode.insertBefore(hm, s);
+     })();
+   </script>
+
+<script type="text/JavaScript">
+<!--
+function MM_jumpMenu(targ,selObj,restore){ //v3.0
+eval(targ+".location='"+selObj.options[selObj.selectedIndex].value+"'");
+if (restore) selObj.selectedIndex=0;
+}
+//-->
+</script>
+
+</head>
+<body>
+
+
+
+
+<div class="header">
+<div style="width:100%; height:4px;vertical-align:central" ></div>
+
+<div style="width:100%; height:27px;vertical-align:central" >
+
+<div style="float:right; width:20px;height:27px;vertical-align:central" ></div>
+
+<select name="dgLink2" id="dgLink2" style="WIDTH: 100px; height:29px; float:right;vertical-align:middle;border-radius:0;border-color:#a6a6a6;margin-left:2px; " onchange="MM_jumpMenu('parent',this,0)">z
+<option value="" selected="selected">搜索新版内容</option>
+<option value="http://yingxiao.baidu.com/search/result.html">搜索旧版内容</option>
+</select>
+
+
+<div style="float:right; width:250;height:27px;vertical-align:central" >
+<script type="text/javascript">(function(){document.write(unescape('%3Cdiv id="bdcs"%3E%3C/div%3E'));var bdcs = document.createElement('script');bdcs.type = 'text/javascript';bdcs.async = true;bdcs.src = 'http://znsv.baidu.com/customer_search/api/js?sid=1228510698476749325' + '&plate_url=' + encodeURIComponent(window.location.href) + '&t=' + Math.ceil(new Date()/3600000);var s = document.getElementsByTagName('script')[0];s.parentNode.insertBefore(bdcs, s);})();</script>
+</div>
+</div>
+
+    <div class="nav2">
+        <div class="logo-container">
+            <a href="http://yingxiao.baidu.com/" class="logo"><span class="img"></span></a>
+        </div>
+                   <ul class="clearfix">
+                                            
+                        <li class="big-title current first">
+				<span><a href="javascript:void(0);" onclick="js_method()" class ="font" target="_self">首页</a>
+				</span>
+                        </li>
+                        <li class="big-title two">
+				<span><a href="http://yingxiao.baidu.com/zhichi" class ="font"  target="_blank">帮助中心</a>
+				</span>
+                        </li>
+                        <li class="big-title three ">
+				<span><a href="http://yingxiao.baidu.com/bmp" class ="font"  target="_blank">BMP计划</a>
+				</span>
+                        </li>
+                        <li class="big-title four ">
+				<span><a href="http://yingxiao.baidu.com/topic/marketing/fc/index.html" class ="font" target="_blank">产品超市</a>
+				</span>
+                        </li>
+                        <li class="big-title  five">
+			       <span><a href="http://yingxiao.baidu.com/support/?module=default&controller=learning" class ="font"  target="_blank">学习中心</a>                                                                              
+			       </span>
+                        </li>
+                        <li class="big-title  six">
+				<span><a href="http://yingxiao.baidu.com/zhuanti"  target="_blank">专题</a>
+				</span>
+                        </li>
+                        <li class="big-title seven ">
+				<span><a href="http://yingxiao.baidu.com/blog/index.html" class ="font"  target="_blank">博客</a>
+				</span>
+                         </li>
+                                    </ul>
+    </div>
+</div>
+
+<div class ="nav-wrap">
+    <div class="nav">
+                        
+        <div class="nav-first">
+              <div class="title font">
+                <span class="nav-img"></span>
+                <span class="title-l-first">搜索流量</span>
+              </div>
+            <ul class="content clearfix">
+                <li class="first-font no-cursor">效果锁定</li>
+                <a href="http://yingxiao.baidu.com?id=daohang"  target="_blank"><li>搜索推广</li></a>
+                <a href="http://yingxiao.baidu.com/product/site/mobilefc.html?id=daohang"  target="_blank"><li class="">移动搜索推广</li></a>
+                <a href="http://yingxiao.baidu.com/product/site/pinzhuanpc.html?id=daohang"  target="_blank"><li class="first-font last-font blue">品牌专区</li></a>
+                <a href="http://yingxiao.baidu.com/product/site/qipaoxian.html?id=daohang"  target="_blank"><li class="lef">品牌起跑线</li></a>
+                <a href="http://yingxiao.baidu.com/product/ma/11.html?id=daohang"  target="_blank"><li >品牌华表</li></a>
+            </ul>
+       </div>
+        
+         <div class="nav-two">
+            <div class="title font">
+                <span class="nav-img"></span>
+               <span class="title-l-two">原生精准营销</span>
+            </div>
+            <ul class="content clearfix">
+                <a href="http://yingxiao.baidu.com/bmp/yx/selfIndex.html?expertId=49545&id=daohang"  target="_blank"><li class="first-font blue">信息流</li></a>
+                <a href="http://pro.baidu.com/product/other/250.html?preview=1&id=daohang"  target="_blank"><li class="long">信息流竞价</li></a>
+                <a href="http://yingxiao.baidu.com/topic/540/index.html?id=daohang"  target="_blank"><li class="first-font blue">百意</li></a>
+                <a href="http://yingxiao.baidu.com/topic/550/index.html?"  target="_blank"><li class="long">聚屏 </li></a>
+            </ul>
+ </div>
+     
+                <div class="nav-three">
+            <div class="title font">
+                <span class="nav-img"></span>
+               <span class="title-l-three">本地化营销</span>
+            </div>
+            <ul class="content clearfix">
+                <a href="http://yingxiao.baidu.com/topic/449/?id=daohang"  target="_blank"><li>本地直通车（CPC）</li></a>
+                <a href=""  target="_blank"><li class="long"></li></a>
+                <a href="http://pro.baidu.com/product/other/281.html?preview=1&id=daohang"  target="_blank"><li>CPT专享</li></a>
+                <a href="http://pro.baidu.com/product/other/280.html?preview=1&id=daohang"  target="_blank"><li class="long">CPT竞享</li></a>
+            </ul>
+        </div>
+                   <div class="nav-four">
+            <div class="title font">
+                <span class="nav-img"></span>
+                <span class="title-l-four">口碑营销</span>
+            </div>
+            <ul class="content clearfix">
+                <a href="http://yingxiao.baidu.com/product/site/baidubaike.html?id=daohang"  target="_blank"><li>企业百科</li></a>
+                <a href="http://yingxiao.baidu.com/product/ma/98.html?qq-pf-to=pcqq.discussion&id=daohang"  target="_blank"><li>知识营销</li></a>
+                <a href="http://yingxiao.baidu.com/product/ma/191.html?id=daohang"  target="_blank"><li>定制化非标</li></a>
+                <a href="http://yingxiao.baidu.com/product/fc/155.html?id=daohang"  target="_blank"><li>商业阿拉丁</li></a>
+            </ul>
+        </div>
+                 <div class="nav-five">
+            <div class="title font">
+                <span class="nav-img"></span>
+               <span class="title-l-five">增值产品</span>
+            </div>
+            <ul class="content clearfix">
+                <a href="http://yingxiao.baidu.com/product/site/tongji.html" target="_blank"><li>百度统计</li></a>
+                <a href="http://yingxiao.baidu.com/product/site/qiao.html" target="_blank"><li class="long">百度商桥</li></a>
+                <a href="http://yingxiao.baidu.com/product/site/lxb.html" target="_blank"><li>离线宝</li></a>
+                <a href="http://yingxiao.baidu.com/product/other/65.html" target="_blank"><li class="long">百度指数</li></a>
+            </ul>
+        </div>
+                <div class="nav-six">
+            <div class="title font">
+                <span class="nav-img"></span>
+                <span class="title-l-six">信誉产品</span>
+            </div>
+            <ul class="content clearfix">
+                <a href="http://yingxiao.baidu.com/topic/481/"  target="_blank"><li>百度口碑</li></a>
+                <a href="http://yingxiao.baidu.com/product/other/158.html"  target="_blank"><li>诚企专区</li></a>
+            </ul>
+     </div>
+    </div>
+</div>
+<div class="wrap">
+    <div class="wrap-first">
+    <div id = "more-menu-first" class="more-menu more-menu0 clearfix">
+       <div class="menu-left">
+            <h3><a href = ""  target="_blank">搜索推广</a></h3>
+            <ul class="wrap">
+                <li class="first"><span class="img"></span>
+                    <span class="s-title">基础知识</span>
+                    <ul class="content clearfix">
+                        <li><a href = "http://yingxiao.baidu.com/support/fc/node_398.html?castk=LTE%3D"  target="_blank">建立账户结构</a></li><li><a href = "http://yingxiao.baidu.com/support/fc/node_405.html"  target="_blank">选择关键词</a></li><li><a href = "http://yingxiao.baidu.com/product/fc/108.html?preview=1"  target="_blank">关键词规划师</a></li><li><a href = "http://yingxiao.baidu.com/support/fc/node_7466.html"  target="_blank">关键词工具</a></li><li><a href = "http://yingxiao.baidu.com/support/fc/node_453.html"  target="_blank">设置匹配方式</a></li><li><a href = "http://yingxiao.baidu.com/product/fc/71.html"  target="_blank">高级短语2.0</a></li><li><a href = "http://yingxiao.baidu.com/support/fc/node_459.html"  target="_blank">撰写创意</a></li><li><a href = "http://yingxiao.baidu.com/support/fc/node_496.html"  target="_blank">价格计费</a></li><li><a href = "http://yingxiao.baidu.com/support/fc/node_487.html"  target="_blank">上线展现</a></li><li><a href = "http://yingxiao.baidu.com/support/fc/node_437.html"  target="_blank">推广排名</a></li><li><a href = "http://yingxiao.baidu.com/product/fc/19.html"  target="_blank">推广实况</a></li><li><a href = "http://yingxiao.baidu.com/support/fc/node_502.html"  target="_blank">十分质量度</a></li><li><a href = "http://yingxiao.baidu.com/topic/232/index.html"  target="_blank">高级过滤</a></li><li><a href = "http://yingxiao.baidu.com/support/fc/node_498.html"  target="_blank">点击过滤</a></li>
+                    </ul>
+                </li>
+                <li class="first"><span class="img"></span>
+                    <span class="s-title">推广样式</span>
+                    <ul class="content clearfix">
+                        <li><a href = "http://pro.baidu.com/product/fc/196.html?id=daohang"  target="_blank">商业推广样式</a></li><li><a href = "http://yingxiao.baidu.com/topic/377/?id=daohang"  target="_blank">常用推广样式</a></li><li><a href = "http://pro.baidu.com/product/fc/214.html?preview=1"  target="_blank">独秀</a></li><li><a href = "http://pro.baidu.com/product/fc/213.html?preview=1"  target="_blank"> 竞秀</a></li><li><a href = "http://pro.baidu.com/product/fc/202.html"  target="_blank">百度寻客视频推广</a></li><li><a href = "http://pro.baidu.com/product/fc/196.html"  target="_blank">商业推广</a></li><li><a href = "http://pro.baidu.com/product/fc/195.html"  target="_blank">闪投商品导航</a></li><li><a href = "http://yingxiao.baidu.com/product/fc/175.html"  target="_blank">闪投全息</a></li><li><a href = "http://yingxiao.baidu.com/product/fc/162.html"  target="_blank">闪投热点橱窗</a></li><li><a href = "http://yingxiao.baidu.com/product/fc/161.html"  target="_blank">闪投商品橱窗</a></li><li><a href = "http://yingxiao.baidu.com/product/fc/156.html"  target="_blank">PC直航回呼</a></li><li><a href = "http://yingxiao.baidu.com/product/fc/126.html"  target="_blank">图片凤巢</a></li><li><a href = "http://yingxiao.baidu.com/product/fc/120.html"  target="_blank">凤巢头条</a></li><li><a href = "http://yingxiao.baidu.com/product/fc/153.html"  target="_blank">图文专区</a></li><li><a href = "http://yingxiao.baidu.com/product/fc/154.html"  target="_blank">内容直达</a></li><li><a href = "http://yingxiao.baidu.com/product/fc/121.html  "  target="_blank">动态创意</a></li><li><a href = "http://yingxiao.baidu.com/product/fc/2.html"  target="_blank">常规推广样式</a></li><li><a href = "http://yingxiao.baidu.com/topic/397/tab1.html"  target="_blank">闪投商品列表</a></li><li><a href = "http://yingxiao.baidu.com/product/fc/110.html?preview=1#ProductContent-1"  target="_blank">闪投创意自动推荐样式</a></li><li><a href = "http://yingxiao.baidu.com/product/fc/109.html?preview=1"  target="_blank">闪电特卖</a></li><li><a href = "http://yingxiao.baidu.com/blog/article/601.html"  target="_blank">口碑创意</a></li><li><a href = "http://pro.baidu.com/product/fc/198.html"  target="_blank">中文域名</a></li><li><a href = "http://yingxiao.baidu.com/product/fc/31.html"  target="_blank">网站头像</a></li>
+                    </ul>
+                </li>
+                <li class="first"><span class="img"></span>
+                    <span class="s-title">投放平台</span>
+                    <ul class="content clearfix">
+                        <li><a href = "http://yingxiao.baidu.com/product/site/phoneFc.html"  target="_blank">手机版凤巢</a></li><li><a href = "http://yingxiao.baidu.com/product/site/editor.html"  target="_blank">百度推广客户端</a></li>
+                    </ul>
+                </li>
+                <li class="first"><span class="img"></span>
+                    <span class="s-title">评估报告</span>
+                    <ul class="content clearfix">
+                        <li><a href = "http://yingxiao.baidu.com/product/fc/22.html"  target="_blank">搜索词报告</a></li><li><a href = "http://yingxiao.baidu.com/product/fc/21.html"  target="_blank">数据报告</a></li><li><a href = "http://yingxiao.baidu.com/product/fc/141.html"  target="_blank">竞争对手分析</a></li>
+
+                    </ul>
+                </li>
+                <li class="first"><span class="img"></span>
+                    <span class="s-title">效果优化</span>
+                    <ul class="content clearfix">
+                        <li><a href = "http://yingxiao.baidu.com/topic/520/index.html?id=daohang"  target="_blank">行业定投</a></li><li><a href = "http://yingxiao.baidu.com/topic/496/index.html"  target="_blank">页面投放</a></li><li><a href = "http://yingxiao.baidu.com/product/other/267.html"  target="_blank">小A智投</a></li><li><a href = "http://yingxiao.baidu.com/topic/497/index.html?id=daohang"  target="_blank">好词快投</a></li><li><a href = "http://yingxiao.baidu.com/product/site/shangdun.html"  target="_blank">百度商盾</a></li><li><a href = "http://yingxiao.baidu.com/product/fc/122.html"  target="_blank">高级精准匹配</a></li><li><a href = "http://yingxiao.baidu.com/product/fc/97.html"  target="_blank">二级地域</a></li><li><a href = "http://yingxiao.baidu.com/topic/372/"  target="_blank">看排名产品</a></li><li><a href = "http://yingxiao.baidu.com/product/fc/103.html?preview=1&castk=LTE="  target="_blank">出价模拟器</a></li><li><a href = "http://yingxiao.baidu.com/product/fc/94.html"  target="_blank">排名倾向自动出价</a></li><li><a href = "http://yingxiao.baidu.com/product/fc/23.html"  target="_blank">转化跟踪工具</a></li><li><a href = "http://yingxiao.baidu.com/support/fc/node_518.html"  target="_blank">账户优化工具</a></li><li><a href = "http://yingxiao.baidu.com/product/fc/146.html"  target="_blank">转化一点通</a></li><li><a href = "http://yingxiao.baidu.com/product/fc/130.html"  target="_blank">转化加分</a></li><li><a href = "http://yingxiao.baidu.com/product/fc/190.html"  target="_blank">出价系数计算器</a></li><li><a href = "http://yingxiao.baidu.com/product/fc/147.html"  target="_blank">时段设置2.0</a></li><li><a href = "http://pro.baidu.com/product/fc/217.html"  target="_blank">省市设置2.0</a></li><li><a href = "http://pro.baidu.com/product/fc/218.html"  target="_blank">区域门店投放</a></li><li><a href = "http://yingxiao.baidu.com/product/fc/3.html"  target="_blank">智能优化</a></li>
+
+                    </ul>
+                </li>
+                <li class="first"><span class="img"></span>
+                    <span class="s-title">账户管理</span>
+                    <ul class="content clearfix">
+                        <li><a href = "http://yingxiao.baidu.com/product/fc/207.html"  target="_blank">展现诊断工具</a></li><li><a href = "http://yingxiao.baidu.com/product/other/62.html"  target="_blank">安全中心</a></li><li><a href = "http://yingxiao.baidu.com/product/fc/5.html"  target="_blank">监控文件夹</a></li><li><a href = "http://yingxiao.baidu.com/product/fc/24.html"  target="_blank">账户管家</a></li><li><a href = "http://yingxiao.baidu.com/product/fc/20.html"  target="_blank">历史操作查询</a></li><li><a href = "http://yingxiao.baidu.com/topic/245/index.html"  target="_blank">百度钱柜</a></li>
+                    </ul>
+                </li>
+
+            </ul>
+        </div>
+        <div class="menu-right">
+            <h3><a href = "http://yingxiao.baidu.com/product/site/mobilefc.html"  target="_blank">移动搜索推广</a></h3>
+            <ul class="wrap">
+                <li class="first"><span class="img"></span>
+                    <span class="s-title">推广样式</span>
+                    <ul class="content clearfix">
+                        <li><a href = "http://yingxiao.baidu.com/product/other/245.html"  target="_blank">闪投行行通</a></li><li><a href = "http://pro.baidu.com/product/fc/208.html"  target="_blank">闪投无线热点橱窗</a></li><li><a href = "http://pro.baidu.com/product/fc/201.html"  target="_blank">无线凤巢头条</a></li><li><a href = "http://pro.baidu.com/product/fc/200.html"  target="_blank">闪投站内直达子链</a></li><li><a href = "http://pro.baidu.com/product/fc/197.html"  target="_blank">闪投点睛</a></li><li><a href = "http://yingxiao.baidu.com/product/fc/176.html"  target="_blank">焦点时刻</a></li><li><a href = "http://yingxiao.baidu.com/product/fc/160.html"  target="_blank">闪投黄金展位</a></li><li><a href = "http://yingxiao.baidu.com/product/fc/159.html"  target="_blank">知识凤巢</a></li><li><a href = "http://yingxiao.baidu.com/product/fc/79.html"  target="_blank">常规推广样式</a></li><li><a href = "http://yingxiao.baidu.com/product/fc/49.html"  target="_blank">直航电话</a></li><li><a href = "http://yingxiao.baidu.com/zhichi/knowledge/detail.action?channelId=1&classId=11573&knowledgeId=13381"  target="_blank">电话直航 强样式</a></li><li><a href = "http://yingxiao.baidu.com/product/fc/51.html"  target="_blank">网页回呼</a></li><li><a href = "http://yingxiao.baidu.com/product/fc/48.html"  target="_blank">商桥移动咨询</a></li><li><a href = "http://yingxiao.baidu.com/product/fc/129.html"  target="_blank">APP调起</a></li><li><a href = "http://yingxiao.baidu.com/product/fc/43.html"  target="_blank">APP推广</a></li><li><a href = "http://yingxiao.baidu.com/product/fc/52.html"  target="_blank">无线闪投</a></li><li><a href = "http://yingxiao.baidu.com/product/fc/111.html"  target="_blank">无线服务直达样式</a></li><li><a href = "http://pro.baidu.com/product/fc/89.html?preview=1"  target="_blank">门店推广</a></li>
+
+                    </ul>
+                </li>
+                <li class="first"><span class="img"></span>
+                    <span class="s-title">移动建站</span>
+                    <ul class="content clearfix">
+                        <li><a href = "http://pro.baidu.com/product/other/269.html?preview=1"  target="_blank">智能落地页</a></li><li><a href = "http://yingxiao.baidu.com/topic/424/"  target="_blank">生活服务行业建站标准</a></li><li><a href = "http://yingxiao.baidu.com/product/fc/113.html"  target="_blank">教育行业移动建站标准</a></li><li><a href = "http://mobi.baidu.com/zn/"  target="_blank">移动建站指南</a></li><li><a href = "http://yingxiao.baidu.com/product/other/104.html?preview=1&castk=9e2c9vl7760dc2916d925"  target="_blank">直达号</a></li>
+
+                    </ul>
+                </li>
+                <li class="first"><span class="img"></span>
+                    <span class="s-title">投放平台</span>
+                    <ul class="content clearfix">
+                        <li><a href = "http://yingxiao.baidu.com/topic/155/zhx.html"  target="_blank">整合型投放系统</a></li>
+                    </ul>
+                </li>
+               <li class="first"><span class="img"></span>
+                    <span class="s-title">效果优化</span>
+                    <ul class="content clearfix">
+                        <li><a href = "http://pro.baidu.com/product/fc/220.html?preview=1"  target="_blank"> 线索通</a></li><li><a href = "http://pro.baidu.com/product/fc/49.html?preview=1"  target="_blank">线索通·电话</a></li><li><a href = "http://pro.baidu.com/product/other/302.html?preview=1"  target="_blank">线索通·咨询</a></li><li><a href = "http://pro.baidu.com/product/fc/170.html?preview=1"  target="_blank">线索通·自定义表单</a></li><li><a href = "http://pro.baidu.com/product/other/440.html?preview=1 "  target="_blank"> 百通</a></li><li><a href = "http://yingxiao.baidu.com/topic/411/"  target="_blank">移动优化包</a></li>
+                    </ul>
+                </li>
+                <li class="first"><span class="img"></span>
+                    
+                    <ul class="content clearfix">
+<font color="red">
+                        
+</font>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div id = "more-menu-two" class="more-menu1 clearfix">
+       <div class ="more-menu-two-wrap">
+            <div class="menu-left">
+                <h3><a href = ""  target="_blank">网盟推广</a></h3>
+                <ul class="wrap">
+                    <li class="first"><span class="img"></span>
+						<span class="s-title">基础知识</span>
+                        <ul class="content clearfix">
+                            <li><a href = "http://yingxiao.baidu.com/zhichi/knowledge/detail.action?channelId=3&classId=12365&knowledgeId=10869"  target="_blank">网盟系统</a></li><li><a href = "http://yingxiao.baidu.com/zhichi/knowledge/detail.action?channelId=3&classId=12365&knowledgeId=6904"  target="_blank">推广账户结构</a></li><li><a href = "http://yingxiao.baidu.com/zhichi/knowledge/detail.action?channelId=3&classId=12365&knowledgeId=6895"  target="_blank">推广计划</a></li><li><a href = "http://yingxiao.baidu.com/zhichi/knowledge/detail.action?channelId=3&classId=12365&knowledgeId=6821"  target="_blank">推广组-投放网络</a></li><li><a href = "http://yingxiao.baidu.com/zhichi/knowledge/detail.action?channelId=3&classId=12365&knowledgeId=14647"  target="_blank">推广组-手动描述-手动</a></li><li><a href = "http://yingxiao.baidu.com/zhichi/knowledge/detail.action?channelId=3&classId=12365&knowledgeId=14646"  target="_blank">推广组-受众描述-自动</a></li><li><a href = "http://yingxiao.baidu.com/zhichi/knowledge/detail.action?channelId=3&classId=12365&knowledgeId=10272"  target="_blank">排除设置</a></li><li><a href = "http://yingxiao.baidu.com/zhichi/knowledge/detail.action?channelId=3&classId=12365&knowledgeId=5439"  target="_blank">创意基本要求</a></li><li><a href = "http://yingxiao.baidu.com/zhichi/knowledge/detail.action?channelId=3&classId=12365&knowledgeId=6874"  target="_blank">创意展现类型</a></li><li><a href = "http://yingxiao.baidu.com/zhichi/knowledge/list.action?pid=11076&channelId=3&classId=10842"  target="_blank">数据报告</a></li><li><a href = "http://yingxiao.baidu.com/zhichi/knowledge/detail.action?channelId=3&classId=10842&knowledgeId=6782"  target="_blank">出价规则</a></li>
+                        </ul>
+                    </li>
+                    <li class="first"><span class="img"></span>
+					        <span class="s-title">推广工具</span>
+                        <ul class="content clearfix">
+                             <li><a href = "http://yingxiao.baidu.com/zhichi/knowledge/list.action?pid=6750&channelId=3&classId=10844"  target="_blank">网站选择工具</a></li><li><a href = "http://yingxiao.baidu.com/zhichi/knowledge/list.action?pid=6752&channelId=3&classId=10844"  target="_blank">复制推广组工具</a></li><li><a href = "http://yingxiao.baidu.com/zhichi/knowledge/list.action?pid=6754&channelId=3&classId=10844"  target="_blank">下线时间查询工具</a></li><li><a href = "http://yingxiao.baidu.com/zhichi/knowledge/list.action?pid=6753&channelId=3&classId=10844"  target="_blank">创意预览工具</a></li><li><a href = "http://yingxiao.baidu.com/zhichi/knowledge/list.action?pid=7713&channelId=3&classId=10844"  target="_blank">转化跟踪工具</a></li><li><a href = "http://yingxiao.baidu.com/zhichi/knowledge/list.action?pid=11105&channelId=3&classId=10844"  target="_blank">历史操作查询</a></li><li><a href = "http://yingxiao.baidu.com/zhichi/knowledge/list.action?pid=11121&channelId=3&classId=10844"  target="_blank">受众组合工具</a></li><li><a href = "http://yingxiao.baidu.com/zhichi/knowledge/list.action?pid=11125&channelId=3&classId=10844"  target="_blank">关键词推荐工具</a></li><li><a href = "http://yingxiao.baidu.com/zhichi/knowledge/list.action?pid=12387&channelId=3&classId=10844"  target="_blank">兴趣点推荐工具</a></li><li><a href = "http://yingxiao.baidu.com/zhichi/knowledge/list.action?pid=14004&channelId=3&classId=10844"  target="_blank">消息提醒</a></li>
+
+                        </ul>
+                    </li>
+                    <li class="first"><span class="img"></span>
+						<span class="s-title">增值工具</span>
+                        <ul class="content clearfix">
+                             <li><a href = "http://yingxiao.baidu.com/product/site/dmp.html"  target="_blank">百度DMP</a></li><li><a href = "http://yingxiao.baidu.com/zhichi/knowledge/list.action?pid=11137&channelId=3&classId=10844"  target="_blank">网盟123</a></li><li><a href = "http://yingxiao.baidu.com/zhichi/knowledge/list.action?pid=11143&channelId=3&classId=10844"  target="_blank">创意专家</a></li><li><a href = "http://yingxiao.baidu.com/zhichi/knowledge/list.action?pid=11153&channelId=3&classId=10844"  target="_blank">网盟API</a></li>
+                        </ul>
+                    </li>
+                    <li class="first"><span class="img"></span>
+                        <span class="s-title">受众投放</span>
+                        <ul class="content clearfix">
+                             <li><a href = "http://yingxiao.baidu.com/zhichi/knowledge/detail.action?channelId=3&classId=14380&knowledgeId=14393"  target="_blank">受众树</a></li><li><a href = "http://yingxiao.baidu.com/zhichi/knowledge/list.action?pid=14382&channelId=3&classId=14380"  target="_blank">品牌受众</a></li><li><a href = "http://yingxiao.baidu.com/zhichi/knowledge/list.action?pid=14384&channelId=3&classId=14380"  target="_blank">品类受众</a></li><li><a href = "http://yingxiao.baidu.com/zhichi/knowledge/list.action?pid=14385&channelId=3&classId=14380"  target="_blank">行业受众</a></li>
+
+                        </ul>
+                    </li>
+                    <li class="first"><span class="img"></span>
+                        <span class="s-title">移动投放</span>
+                        <ul class="content clearfix">
+                             <li><a href = "http://yingxiao.baidu.com/zhichi/knowledge/detail.action?channelId=3&classId=14544&knowledgeId=14708"  target="_blank">定向方式</a></li><li><a href = "http://yingxiao.baidu.com/zhichi/knowledge/detail.action?channelId=3&classId=14544&knowledgeId=14716"  target="_blank">创意要求</a></li><li><a href = "http://pro.baidu.com/product/other/321.html?preview=1&id=daohang"  target="_blank">移动营销页</a></li>
+
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <div class="menu-right">
+                  <h3><a href = "http://yingxiao.baidu.com/product/site/mdsp.html"  target="_blank">移动DSP</a></h3>
+                <ul class="wrap">
+                    <li class="first"><span class="img"></span>
+                          <span class="s-title">基础知识</span>
+                        <ul class="content clearfix">
+                             <li><a href = "http://yingxiao.baidu.com/zhichi/knowledge/detail.action?channelId=3&classId=13636&knowledgeId=13643"  target="_blank">移动DSP定义</a></li><li><a href = "http://yingxiao.baidu.com/zhichi/knowledge/detail.action?channelId=3&classId=13636&knowledgeId=13644"  target="_blank">移动DSP生态圈</a></li><li><a href = "http://yingxiao.baidu.com/zhichi/knowledge/detail.action?channelId=3&classId=13636&knowledgeId=13649"  target="_blank">移动DSP优势</a></li>
+                        </ul>
+                    </li>
+                    <li class="first"><span class="img"></span>
+                         <span class="s-title">投放设置</span>
+                        <ul class="content clearfix">
+                             <li><a href = "http://yingxiao.baidu.com/zhichi/knowledge/detail.action?channelId=3&classId=13636&knowledgeId=13651"  target="_blank">移动DSP定向方式</a></li><li><a href = "http://yingxiao.baidu.com/zhichi/knowledge/list.action?pid=13640&channelId=3&classId=13636"  target="_blank">移动DSP创意规格</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+          </div>
+        </div>
+        <div id = "more-menu-three" class="more-menu2 clearfix">
+            <div class="more-menu-three-wrap">
+                <div class="menu-left">
+                    <ul class="wrap">
+                        <li class="line">
+                         <ul class="content clearfix">
+                          
+                        </ul>
+                      </li>
+                   </ul>
+                 </div>
+            </div>
+        </div>
+        <div id = "more-menu-four" class="more-menu3 clarfix">
+            <div class="more-menu-four-wrap">
+               <div class="menu-left">
+                    <ul class="wrap">
+                        <li class="line">
+                          <ul class="content clearfix">
+                             <li><a href = "http://yingxiao.baidu.com/product/ma/125.html?preview=1&id=daohang"  target="_blank">图片推广</a></li><li><a href = "http://yingxiao.baidu.com/topic/340/index.html"  target="_blank">凤巢视频</a></li><li><a href = "http://yingxiao.baidu.com/product/fc/154.html"  target="_blank">内容直达</a></li><li><a href = "http://yingxiao.baidu.com/product/fc/153.html"  target="_blank">图文专区</a></li><li><a href = "http://yingxiao.baidu.com/product/fc/126.html"  target="_blank">图片凤巢</a></li><li><a href = "http://yingxiao.baidu.com/product/fc/6.html"  target="_blank">蹊径</a></li><li><a href = "http://yingxiao.baidu.com/product/fc/31.html"  target="_blank">网站头像</a></li><li><a href = "http://yingxiao.baidu.com/product/fc/156.html"  target="_blank">PC直航回呼</a></li><li><a href = "http://yingxiao.baidu.com/blog/article/601.html"  target="_blank">口碑创意</a></li><li><a href = "http://yingxiao.baidu.com/product/fc/91.html"  target="_blank">微博创意</a></li>
+                          </ul>
+                      </li>
+                  </ul>
+               </div>
+            </div>
+        </div>
+        <div id = "more-menu-five" class="more-menu4 clearfix">
+             <div class="more-menu-five-wrap">
+                 <div class="menu-left">
+                    <ul class="wrap">
+                        <li class="first"><span class="img"></span>
+                             <span class="s-title">数据统计</span>
+                          <ul class="content clearfix">
+                            <li><a href = "http://yingxiao.baidu.com/product/site/tongji.html"  target="_blank">百度统计</a></li>
+                          </ul>
+                      </li>
+                      <li class="first"><span class="img"></span>
+                             <span class="s-title">效果转化</span>
+                          <ul class="content clearfix">
+                            <li><a href = "http://yingxiao.baidu.com/product/vadd/64.html"  target="_blank">百度商务助手</a></li><li><a href = "http://yingxiao.baidu.com/product/site/lxb.html"  target="_blank">百度离线宝</a></li><li><a href = "http://yingxiao.baidu.com/product/site/qiao.html"  target="_blank">百度商桥</a></li><li><a href = "http://yingxiao.baidu.com/product/fc/51.html"  target="_blank">网页回呼</a></li>
+                          </ul>
+                      </li>
+                      <li class="first"><span class="img"></span>
+                             <span class="s-title">金融衍生</span>
+                          <ul class="content clearfix">
+                            <li><a href = "http://yingxiao.baidu.com/product/other/58.html"  target="_blank">月月发</a></li><li><a href = "http://yingxiao.baidu.com/product/other/59.html"  target="_blank">周周赚</a></li>
+                          </ul>
+                      </li>
+                      <li class="first"><span class="img"></span>
+                             <span class="s-title">投放决策</span>
+                          <ul class="content clearfix">
+                            <li><a href = "http://yingxiao.baidu.com/product/ma/7.html"  target="_blank">百度司南</a></li><li><a href = "http://yingxiao.baidu.com/product/ma/55.html"  target="_blank">百度精算</a></li><li><a href = "http://yingxiao.baidu.com/product/other/65.html"  target="_blank">百度指数</a></li><li><a href = "http://yingxiao.baidu.com/product/vadd/54.html"  target="_blank">百度指数专业版</a></li>
+                          </ul>
+                      </li>
+
+                  </ul>
+               </div>
+            </div>
+        </div>
+        <div id = "more-menu-six" class="more-menu5 clearfix">
+            <div class="more-menu-six-wrap">
+                <div class="menu-left">
+                    <ul class="wrap">
+                        <li class="line">
+                          <ul class="content clearfix">
+                            <li><a href = "http://yingxiao.baidu.com/product/other/158.html"  target="_blank">诚企专区</a></li><li><a href = "http://yingxiao.baidu.com/product/other/171.html "  target="_blank">资信认证</a></li><li><a href = "http://yingxiao.baidu.com/product/other/172.html"  target="_blank">承诺保障</a></li><li><a href = "http://yingxiao.baidu.com/product/vadd/173.html"  target="_blank">信誉名片</a></li><li><a href = "http://yingxiao.baidu.com/product/other/100.html?castk=5609cvo7815786c10d850"  target="_blank">实名认证</a></li>
+                        </ul>
+                       </li>
+                  </ul>
+               </div>
+            </div>
+        </div>
+    <div class="banner-pic">
+        <div id="banner"></div>
+    </div>
+    <div class="slide">
+            <span class="marqu-title">公告:</span>
+<div class="marqu" id="J_notice">
+   <div class="newslist">
+      <ul>
+                    
+               <li><a href="&id=gg" target="_blank">百度HI关注『百度营销中心 代理商服务』获取更多</a></li>
+                     
+               <li><a href="http://pro.baidu.com/product/fc/346.html?preview=1&id=gg" target="_blank">移动端搜索结果的全面升级</a></li>
+                    
+      </ul>
+    </div>
+    <a class="abtn aleft" href="#up">上移</a>
+    <a class="abtn aright" href="#down">下移</a>
+</div>
+            <div class="tab">
+                <span class="tab-content-active"><span class="tab-first tab-nav-active"></span>生产力</span><span><span class="tab-two"></span>整合营销</span><span><span class="tab-three"></span>专家分享</span><span><span class="tab-four"></span>BMP认证</span>
+            </div>
+            <div class="tab-content tab-content-first">
+    <ul>
+                    <li><span class="tab-content-tip"></span><a href="http://yingxiao.baidu.com/topic/522/index.html?id=0&id=tab1" target="_blank" title=当知识营销遇到宝宝知道>当知识营销遇到宝宝知道</a></li>
+                    <li><span class="tab-content-tip"></span><a href="http://yingxiao.baidu.com/topic/524/index.html?id=yxzt&id=tab1" target="_blank" title=漫话信息流>漫话信息流</a></li>
+                    <li><span class="tab-content-tip"></span><a href="http://yingxiao.baidu.com/topic/449/?id=0&id=tab1" target="_blank" title=百度本地直通车>百度本地直通车</a></li>
+                    <li><span class="tab-content-tip"></span><a href="http://yingxiao.baidu.com/bmp/article.html?articleId=5912&id=tab1" target="_blank" title=干货！信息流7大行业案例来袭>干货！信息流7大行业案例来袭</a></li>
+                    <li><span class="tab-content-tip"></span><a href="http://yingxiao.baidu.com/bmp/yx/article.html?articleId=5993&id=tab1" target="_blank" title=李叫兽团队新力作-好文案搜索>李叫兽团队新力作-好文案搜索</a></li>
+                    <li><span class="tab-content-tip"></span><a href="http://yingxiao.baidu.com/topic/379/?id=0&id=tab1" target="_blank" title=品牌专区投放方案与案例分享——教育培训篇>品牌专区投放方案与案例分享——教育培训篇</a></li>
+                        
+   </ul>
+</div>
+            <div class="tab-content tab-content-two">
+    <ul>
+                    <li><span class="tab-content-tip"></span><a href="http://yingxiao.baidu.com/bmp/article.html?articleId=5735&id=tab2" target="_blank" title=整合营销策划之内容规划篇>整合营销策划之内容规划篇</a></li>
+                    <li><span class="tab-content-tip"></span><a href="http://yingxiao.baidu.com/bmp/article.html?articleId=5730&id=tab2" target="_blank" title=整合营销策划之受众分析篇>整合营销策划之受众分析篇</a></li>
+                    <li><span class="tab-content-tip"></span><a href="http://yingxiao.baidu.com/bmp/article.html?articleId=5729&id=tab2" target="_blank" title=整合营销策划之企业诊断篇>整合营销策划之企业诊断篇</a></li>
+                    <li><span class="tab-content-tip"></span><a href="http://yingxiao.baidu.com/bmp/article.html?articleId=5644&id=tab2" target="_blank" title=百度2017新商业趋势报告>百度2017新商业趋势报告</a></li>
+                    <li><span class="tab-content-tip"></span><a href="http://yingxiao.baidu.com/bmp/article.html?articleId=837&id=tab2" target="_blank" title=百度推广多方位全面整合营销>百度推广多方位全面整合营销</a></li>
+                    <li><span class="tab-content-tip"></span><a href="http://yingxiao.baidu.com/bmp/article.html?articleId=792&id=tab2" target="_blank" title=整合营销威力之大>整合营销威力之大</a></li>
+                        
+   </ul>
+</div>
+            <div class="tab-content tab-content-three">
+    <ul>
+                    <li><span class="tab-content-tip"></span><a href="http://yingxiao.baidu.com/bmp/selfIndex.html?expertId=49536&id=tab3" target="_blank" title=百悦人物>百悦人物</a></li>
+                    <li><span class="tab-content-tip"></span><a href="http://yingxiao.baidu.com/bmp/selfIndex.html?expertId=49079&id=tab3" target="_blank" title=行家专访>行家专访</a></li>
+                    <li><span class="tab-content-tip"></span><a href="http://yingxiao.baidu.com/bmp/selfIndex.html?expertId=49074&id=tab3" target="_blank" title=SEM干货分享>SEM干货分享</a></li>
+                    <li><span class="tab-content-tip"></span><a href="http://yingxiao.baidu.com/bmp/selfIndex.html?expertId=38901&id=tab3" target="_blank" title=竞价学习交流>竞价学习交流</a></li>
+                    <li><span class="tab-content-tip"></span><a href="http://yingxiao.baidu.com/bmp/selfIndex.html?expertId=49167&id=tab3" target="_blank" title=移动搜索营销>移动搜索营销</a></li>
+                    <li><span class="tab-content-tip"></span><a href="http://yingxiao.baidu.com/bmp/guandian.html?topicId=43&topicName=%E7%BF%98%E6%A5%9A%E8%AE%BA%E6%96%87&topicNum=31&tp=1&id=tab3" target="_blank" title=专家论文>专家论文</a></li>
+                        
+   </ul>
+</div>
+            <div class="tab-content tab-content-four">
+    <ul>
+                    <li><span class="tab-content-tip"></span><a href="http://yingxiao.baidu.com/zhichi/knowledge/list.action?pid=14707&channelId=34&classId=14564&id=tab4" target="_blank" title=课程一《百度大客户整合营销服务实践》>课程一《百度大客户整合营销服务实践》</a></li>
+                    <li><span class="tab-content-tip"></span><a href="http://yingxiao.baidu.com/zhichi/knowledge/list.action?pid=14707&channelId=34&classId=14564&id=tab4" target="_blank" title=课程二《百度商业产品价值》>课程二《百度商业产品价值》</a></li>
+                    <li><span class="tab-content-tip"></span><a href="http://yingxiao.baidu.com/zhichi/knowledge/list.action?pid=14707&channelId=34&classId=14564&id=tab4" target="_blank" title=课程三《整合营销基础》>课程三《整合营销基础》</a></li>
+                    <li><span class="tab-content-tip"></span><a href="http://yingxiao.baidu.com/zhichi/knowledge/list.action?pid=14707&channelId=34&classId=14564&id=tab4" target="_blank" title=课程四《百度信息流投放方法论》>课程四《百度信息流投放方法论》</a></li>
+                    <li><span class="tab-content-tip"></span><a href="http://yingxiao.baidu.com/zhichi/knowledge/list.action?pid=14709&channelId=34&classId=14707&id=tab4" target="_blank" title=课程资料下载>课程资料下载</a></li>
+                    <li><span class="tab-content-tip"></span><a href="http://yingxiao.baidu.com/bmp/xinke/?ip=0&id=tab4" target="_blank" title=商学院在线视频学习>商学院在线视频学习</a></li>
+                        
+   </ul>
+</div>
+            <div class="slide-tab-last">
+    <h1>营销黑板报</h1>
+    <div class="slide-last-wrap">
+                
+                                  <div class="slide-last-title"><a href="http://yingxiao.baidu.com/bmp/article.html?articleId=5729&id=hbb" target="_blank">整合营销策划之诊断篇</a></div>
+                    <div class="slide-last-content" title=不同发展阶段的企业，面临不同的营销问题。判断企业所处的阶段，给出对应的营销策略，是整合营销的第一步。>不同发展阶段的企业，面临不同的营销问题。判断企业所处的阶段，给出对应的营销策略，是整合营销的第一步。</div>
+                    <a href="http://yingxiao.baidu.com/bmp/article.html?articleId=5729&id=hbb" target="_blank">详情></a>
+                              
+    </div>
+</div>
+
+    </div>
+            <div class="banner-nav">
+                            <div class="banner-nav-item">
+                                <div class="banner-nav-title"><a href="http://yingxiao.baidu.com/topic/377/?id=daohang &id=mk1" target="_blank">
+                  搜索推广样式大全</a></div>
+                  <div class="banner-nav-subtitle">
+                   样式太多，分不清楚？</div>
+                  <a href="http://yingxiao.baidu.com/topic/377/?id=daohang &id=mk1" target="_blank"><img src=http://pro.baidu.com/topic/xiaotu/tubiao.jpeg alt="没有图片"></a>
+                               
+             </div>
+                   <div class="banner-nav-item">
+                                 <div class="banner-nav-title"><a href="http://yingxiao.baidu.com/bmp/yx/selfIndex.html?expertId=49545&id=mk2" target="_blank">
+                  信息流产品专区</a></div>
+                   <div class="banner-nav-subtitle">
+                   产品解读、案例、方法论···</div>
+                  <a href="http://yingxiao.baidu.com/bmp/yx/selfIndex.html?expertId=49545&id=mk2" target="_blank"><img src=http://pro.baidu.com/topic/1ceshi/t3.jpg alt="没有图片"></a>
+                                
+             </div>
+                   <div class="banner-nav-item">
+                                 <div class="banner-nav-title"><a href="http://yingxiao.baidu.com/bmp/selfIndex.html?expertId=47759&id=mk3" target="_blank">
+                  BMP行业沙龙</a></div>
+                   <div class="banner-nav-subtitle">
+                    百度营销专家第九届内容分享</div>
+                  <a href="http://yingxiao.baidu.com/bmp/selfIndex.html?expertId=47759&id=mk3" target="_blank"><img src=http://pro.baidu.com/topic/1ceshi/t4.jpg alt="没有图片"></a>
+                               
+             </div>
+                   <div class="banner-nav-item">
+                                 <div class="banner-nav-title"><a href="http://yingxiao.baidu.com/bmp/guandian.html?categoryId=8&categoryName=%E6%8A%95%E6%94%BE%E5%86%B3%E7%AD%96&categoryNum=114&ct=1&id=mk4" target="_blank">
+                  整合营销专区</a></div>
+                   <div class="banner-nav-subtitle">
+                   营销中都可以整合什么？</div>
+                  <a href="http://yingxiao.baidu.com/bmp/guandian.html?categoryId=8&categoryName=%E6%8A%95%E6%94%BE%E5%86%B3%E7%AD%96&categoryNum=114&ct=1&id=mk4" target="_blank"><img src=http://pro.baidu.com/topic/1ceshi/t2.jpg alt="没有图片"></a>
+                                
+             </div>
+                   <div class="banner-nav-item">
+                                <div class="banner-nav-title"><a href="http://yingxiao.baidu.com/bmp/article.html?articleId=5644&id=mk5" target="_blank">
+                  行业观察</a></div>
+                   <div class="banner-nav-subtitle">
+                   百度2017新商业趋势报告</div>
+                  <a href="http://yingxiao.baidu.com/bmp/article.html?articleId=5644&id=mk5" target="_blank"><img src=http://pro.baidu.com/topic/1ceshi/t5.jpg alt="没有图片"></a>
+                               
+             </div>
+       
+</div>
+
+
+</div>
+<div class="wrap-two">
+<div class="main">
+<div class="main-first">
+<div class="title">
+    <span class="img"></span><span></span>
+</div>
+<div class="basic">
+    <div class="big-title">
+        <span class="img"></span>
+        <span class="font">账户基础优化</span>
+    </div>
+
+    <div class="left">
+        <div class="top">
+            <h3 class="font">基础产品和知识</h3>
+            <div class="first-left">
+                                
+                <h3><span class="img"></span><span class="text"><a href = "http://yingxiao.baidu.com/zhichi/knowledge/detail.action?channelId=1&classId=390&knowledgeId=541&id=changjing"  target="_blank">怎样建立一个健康的账户结构</a></span></h3>
+                <p>一个健康的账户结构不仅能让日常投放事半功倍，还能有效提升推广效果。好的账户结构怎么规划，看我的！
+</p>
+            </div>
+            <div class="first-right">
+                                
+                <h3><span class="img"></span><span class="text"><a href = "http://yingxiao.baidu.com/zhichi/knowledge/detail.action?channelId=1&classId=390&knowledgeId=753&id=changjing"  target="_blank">怎样进行有效的账户优化</a></span></h3>
+                <p>有效的账户优化可以提高关键词的质量度，以更低的点击价格获得更优的排名，从而降低整体推广费用，提高投资回报率。
+</p>
+            </div>
+
+            <ul class="list clearfix">
+                <li><span class="img"></span><a href = "http://yingxiao.baidu.com/zhichi/knowledge/detail.action?channelId=1&classId=397&knowledgeId=847&id=changjing"  target="_blank">哪类关键词适合我</a></li>
+<li><span class="img"></span><a href = "http://yingxiao.baidu.com/zhichi/knowledge/list.action?pid=453&channelId=1&classId=397"  target="_blank">如何设置匹配方式</a></li>
+<li><span class="img"></span><a href = "http://yingxiao.baidu.com/zhichi/knowledge/list.action?pid=459&channelId=1&classId=397"  target="_blank">写创意的正确姿势</a></li>
+<li><span class="img"></span><a href = "http://yingxiao.baidu.com/zhichi/knowledge/list.action?pid=468&channelId=1&classId=390&id=changjing"  target="_blank">出价的那些小技巧</a></li>
+<li><span class="img"></span><a href = "http://yingxiao.baidu.com/zhichi/knowledge/list.action?pid=502&channelId=1&classId=436"  target="_blank">质量度背后的秘密</a></li>
+<li><span class="img"></span><a href = "http://yingxiao.baidu.com/zhichi/knowledge/list.action?pid=437&channelId=1&classId=436"  target="_blank">推广排名深度解读</a></li>
+
+
+
+            </ul>
+
+        </div>
+        <div class="bottom">
+            <h3 class="font">信誉产品</h3>
+            <ul class="authenticate clearfix font">
+                <li><span class="img"></span><a href = "http://yingxiao.baidu.com/product/other/102.html?castk=32383kj78bb4059c0d287"  target="_blank">官网认证</a></li>
+<li><span class="img"></span><a href = "http://yingxiao.baidu.com/product/other/101.html?castk=82725fa792fb59ea0d914"  target="_blank">实地认证</a></li>
+<li><span class="img"></span><a href = "http://yingxiao.baidu.com/product/other/100.html?castk=5609cvo7815786c10d850"  target="_blank">实名认证</a></li>
+
+
+
+            </ul>
+        </div>
+    </div>
+    <div class="right">
+        <h3 class="s-title">教程和经验</h3>
+        <div class="section">
+                                             <h4 class="attack">
+<a href = "http://yingxiao.baidu.com/bmp/article.html?articleId=5839&id=changjing"  target="_blank">关键词是越多越好吗？</a></h4>
+                <p><span class="douhaoFront"></span><span class="text">做百度竞价投放的时候总是会忍不住用各种的账户关键词挖掘工具、关键词挖掘方法拓展关键词，但是事实上关键词是越多越好吗？
+</span><span class="douhaoBack"></span></p>              
+
+
+        </div>
+        <div class="wrap-ul ">
+            <ul class="clearfix">
+                <li class="wrap-li"><span class="wrap-icon"></span><a href = "http://yingxiao.baidu.com/bmp/article.html?articleId=5692&id=changjing"  target="_blank">搜索推广营销漏斗模型详解</a></li><li class="wrap-li"><span class="wrap-icon"></span><a href = "http://yingxiao.baidu.com/bmp/article.html?articleId=655&id=changjing"  target="_blank">全面解读新账户设置</a></li><li class="wrap-li"><span class="wrap-icon"></span><a href = "http://yingxiao.baidu.com/bmp/article.html?articleId=3719&id=changjing"  target="_blank">关键词策略之按需求划分关键词</a></li>
+
+
+
+
+                <li class="wrap-li clear-bottom"><span class="wrap-icon"></span><a href = "http://yingxiao.baidu.com/bmp/article.html?articleId=5836&id=changjing"  target="_blank">关键词质量度优化思路</a></li>
+
+
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="advanced">
+    <div class="wrap-title">
+        <span class="b-icon"></span>
+        <span class="b-title">账户进阶优化</span>
+    </div>
+    <div class="content-a">
+        <div class="content_left">
+            <div class="top">
+                <h3 class="s-title">进阶优化产品</h3>
+                <div class="top-img"><a target="_blank" href="http://yingxiao.baidu.com/product/other/267.html?id=yxzt&id=changjing" >
+<img src="http://pro.baidu.com/topic/xiaotu/xiaoAzhitou.jpeg"/></a></div>
+                <div class="float">
+                <span>为您提供账户优化的全套解决方案</span>
+                </div>
+
+                <div class="img-left">
+                    <div class="left-top">
+                                               <h3><span class="s-icon"></span><span class="key-word"><a href = "http://yingxiao.baidu.com/bmp/article.html?articleId=5722&id=changjing"  target="_blank">行业定投之进阶优化篇</a></span></h3>
+                        <p class="fsmall">想通过行业定投更好地锁定行业流量线索？网页地址添加的多不多，选择的好不好，直接决定最终的效果。
+</p>
+                    </div>
+                    <div class="left-bottom">
+                                               <h3><span class="s-icon"></span><span class="key-word"><a href = "http://yingxiao.baidu.com/topic/411/index.html"  target="_blank">要闻：移动需单独提词</a></span></h3>
+                        <p class="fsmall">网民移动搜索行为与PC大不同，PC热词在移动端不一定展现佳，移动需..</p>
+                    </div>
+                </div>
+            </div>
+            <div class="content-bottom">
+                <ul class="bottom-ul clearfix">
+                    <li class="bottom-li key-word"><a href="http://shantou.baidu.com/#/introduction?id=changjing" target="_blank"><span class="s-icon"></span>闪投产品全面解读</a></li><li class="bottom-li key-word"><a href="http://yingxiao.baidu.com/product/fc/121.html?id=changjing" target="_blank"><span class="s-icon"></span>动态创意知多少</a></li><li class="bottom-li key-word"><a href="http://yingxiao.baidu.com/product/fc/180.html?id=changjing" target="_blank"><span class="s-icon"></span>目标人群精准拓流</a></li><li class="bottom-li key-word"><a href="http://yingxiao.baidu.com/topic/496/index.html?id=changjing" target="_blank"><span class="s-icon"></span>页面投放怎么玩</a></li><li class="bottom-li key-word"><a href="http://yingxiao.baidu.com/topic/497/index.html?id=daohang&id=changjing" target="_blank"><span class="s-icon"></span>好词快投高效拓流</a></li><li class="bottom-li key-word"><a href="http://yingxiao.baidu.com/topic/358/index.html?id=changjing" target="_blank"><span class="s-icon"></span>无效点击防护利器</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="content-right">
+            <h3 class="s-title">教程和经验</h3>
+            <div class="section">
+                                                 <h4 class="attack">
+<a href = "http://yingxiao.baidu.com/bmp/article.html?articleId=5852&id=changjing"  target="_blank">账户优化必备技能—流量分析</a></h4>
+                <p><span class="douhaoFront"></span><span class="text">账户提前下线，PC和移动的消费占比发生变化，点击率的变化、某时段流量暴增。这些小小的信号都是在提醒我们流量可能发生了变化。
+</span><span class="douhaoBack"></span></p>              
+
+
+
+            </div>
+            <div class="wrap-ul ">
+                <ul class="clearfix">
+                    <li class="wrap-li"><span class="wrap-icon"></span><a href = "http://yingxiao.baidu.com/bmp/article.html?articleId=5766&id=changjing"  target="_blank">百度推广账户诊断标准和流程</a></li><li class="wrap-li"><span class="wrap-icon"></span><a href = "http://yingxiao.baidu.com/bmp/article.html?articleId=5655&id=changjing"  target="_blank">深度解剖房产中介服务行业SEM投放策略</a></li><li class="wrap-li"><span class="wrap-icon"></span><a href = "http://yingxiao.baidu.com/bmp/article.html?articleId=5705&id=changjing"  target="_blank">节省成本利器—长尾理论详解</a></li>
+
+
+
+
+                    <li class="wrap-li clear-bottom"><span class="wrap-icon"></span><a href = "http://yingxiao.baidu.com/bmp/article.html?articleId=5717&id=changjing"  target="_blank">如何正确截取竞争对手优质流量？</a></li>
+
+
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="upgrade">
+    <div class="wrap-title">
+        <span class="b-icon"></span>
+        <span class="b-title">拓展账户流量</span>
+    </div>
+    <div class="content-a">
+        <div class="content_left">
+            <div class="top">
+                <h3 class="s-title">流量拓展工具</h3>
+                <div class="top-img"><a target="_blank" href="http://yingxiao.baidu.com/topic/520/index.html?id=daohang1 " >
+<img src="http://pro.baidu.com/topic/xiaotu/hangyedingtou.jpeg"/></a></div>
+                 <div class="float">
+                <span>百度推广手机版4.0闪亮登场</span>
+                </div>
+                <div class="img-left">
+                    <div class="left-top">
+                                               <h3><span class="s-icon"></span><span class="key-word"><a href = "http://yingxiao.baidu.com/product/other/267.html "  target="_blank">小A智投</a></span></h3>
+                        <p class="fsmall">新手上路，不知道该如何优化账户？小A智投为您提供账户优化的全套解决方案。
+</p>
+                    </div>
+                    <div class="left-bottom">
+                                               <h3><span class="s-icon"></span><span class="key-word"><a href = "http://yingxiao.baidu.com/topic/496/index.html "  target="_blank">页面投放</a></span></h3>
+                        <p class="fsmall">无需买词，高效获取优质搜索流量！搜索推广新玩法，页面投放来帮你！
+</p>
+                    </div>
+                </div>
+            </div>
+            <div class="content-bottom ">
+                <ul class="bottom-ul clearfix">
+                    <li class="bottom-li key-word"><a href="http://yingxiao.baidu.com/topic/497/index.html?id=daohang " target="_blank"><span class="s-icon"></span>好词快投</a></li><li class="bottom-li key-word"><a href="http://yingxiao.baidu.com/product/fc/122.html " target="_blank"><span class="s-icon"></span>高级精确匹配</a></li><li class="bottom-li key-word"><a href="http://yingxiao.baidu.com/product/fc/180.html " target="_blank"><span class="s-icon"></span>目标客户追投</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="content-right">
+            <h3 class="s-title">产品快讯</h3>
+            <div class="upgrade-ul">
+                <ul>
+                    <li class="wrap-li"><span class="wrap-icon"></span><a href = "http://yingxiao.baidu.com/bmp/article.html?articleId=5921 "  target="_blank">竞秀精选自提&竞秀焦点关键词功能升级</a></li><li class="wrap-li"><span class="wrap-icon"></span><a href = "http://yingxiao.baidu.com/bmp/article.html?articleId=5920 "  target="_blank">图片凤巢：无线端“展望样式”全流量上线</a></li><li class="wrap-li"><span class="wrap-icon"></span><a href = "http://yingxiao.baidu.com/bmp/article.html?articleId=5919 "  target="_blank">快照装修：神农电话和咨询样式运营</a></li><li class="wrap-li"><span class="wrap-icon"></span><a href = "http://yingxiao.baidu.com/bmp/article.html?articleId=5918 "  target="_blank">凤巢广告“创意图片化”功能全流量上线</a></li><li class="wrap-li"><span class="wrap-icon"></span><a href = "http://yingxiao.baidu.com/bmp/article.html?articleId=5896 "  target="_blank">移动建站工具与落地页面即将停止服务</a></li><li class="wrap-li"><span class="wrap-icon"></span><a href = "http://yingxiao.baidu.com/bmp/article.html?articleId=5895 "  target="_blank">泛品牌二期：业务端投放新平台全流量上线</a></li>
+
+
+
+
+                    <li class="wrap-li clear-bottom"><span class="wrap-icon"></span><a href = "http://yingxiao.baidu.com/bmp/article.html?articleId=5894 "  target="_blank">好词快投—关键词访问URL优选功能上线</a></li>
+
+
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="website">
+    <div class="wrap-title">
+        <span class="b-icon"></span>
+        <span class="b-title">提升转化效率</span>
+    </div>
+    <div class="content-a">
+        <div class="content_left">
+            <div class="top">
+                <h3 class="s-title">转化提升工具</h3>
+                <div class="top-img"><a target="_blank" href="http://yingxiao.baidu.com/topic/523/index.html?id=yxzt " >
+<img src="http://pro.baidu.com/product/site/jun_newIndex/img/yidongyouhua.jpg"/></a></div>
+                 <div class="float">
+                <span>预估用户意图，一键直达转化</span>
+                </div>
+                <div class="img-left">
+                    <div class="left-top">
+                                               <h3><span class="s-icon"></span><span class="key-word"><a href = "http://pro.baidu.com/product/other/269.html?preview=1"  target="_blank">智能落地页</a></span></h3>
+                        <p class="fsmall">无线站落地页体验差、路径长、设计混乱、无创意？快来试试智能落地页吧！
+</p>
+                    </div>
+                    <div class="left-bottom">
+                                               <h3><span class="s-icon"></span><span class="key-word"><a href = "http://yingxiao.baidu.com/product/fc/136.html?preview=1 "  target="_blank">分人群出价</a></span></h3>
+                        <p class="fsmall">对特定人群进行针对性投放，实现精细化投放，直达受众。
+</p>
+                    </div>
+                </div>
+            </div>
+            <div class="content-bottom">
+                <ul class="bottom-ul clearfix">
+                    <li class="bottom-li key-word"><a href="http://yingxiao.baidu.com/product/fc/170.html " target="_blank"><span class="s-icon"></span>线索通·自定义表单</a></li><li class="bottom-li key-word"><a href="http://yingxiao.baidu.com/product/fc/49.html " target="_blank"><span class="s-icon"></span>线索通·电话</a></li><li class="bottom-li key-word"><a href="http://yingxiao.baidu.com/product/fc/51.html " target="_blank"><span class="s-icon"></span>线索通·网页回呼</a></li><li class="bottom-li key-word"><a href="http://yingxiao.baidu.com/product/fc/48.html " target="_blank"><span class="s-icon"></span>线索通·咨询</a></li><li class="bottom-li key-word"><a href="http://yingxiao.baidu.com/topic/444/ " target="_blank"><span class="s-icon"></span>线索通·推课</a></li><li class="bottom-li key-word"><a href="http://pro.baidu.com/product/fc/209.html?preview=1 " target="_blank"><span class="s-icon"></span>线索通·医美</a></li>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+    <div class="content-right changeP">
+        <h3 class="s-title">教程和经验</h3>
+        <div class="section">
+                                             <h4 class="attack">
+<a href = "http://yingxiao.baidu.com/bmp/article.html?articleId=5665 "  target="_blank">利用大数据提高SEM投放ROI</a></h4>
+                <p><span class="douhaoFront"></span><span class="text">随着关键词CPC的竞争白热化，曾经的SEM投放从蓝海变红海，那些急需流量的企业主遇到极大的营销困境。用什么来拯救SEM投放？面对楚楚可怜的ROI我们到底还能做些什么？
+</span><span class="douhaoBack"></span></p>              
+
+
+        </div>
+        <div class="wrap-ul ">
+            <ul  class="clearfix">
+                <li class="wrap-li"><span class="wrap-icon"></span><a href = "http://yingxiao.baidu.com/product/fc/146.html "  target="_blank">转化一点通：转化才是硬道理</a></li><li class="wrap-li"><span class="wrap-icon"></span><a href = "http://yingxiao.baidu.com/bmp/article.html?articleId=5884 "  target="_blank">润滑油招商加盟行业分析报告</a></li><li class="wrap-li"><span class="wrap-icon"></span><a href = "http://yingxiao.baidu.com/bmp/article.html?articleId=5901  "  target="_blank">竞价推广效果不好怎么办？ </a></li>
+
+
+
+
+                <li class="wrap-li clear-bottom"><span class="wrap-icon"></span><a href = "http://yingxiao.baidu.com/bmp/article.html?articleId=5552 "  target="_blank">“独秀” 彰显品牌魅力</a></li>
+
+
+            </ul>
+        </div>
+    </div>
+</div>
+</div>
+
+<div class="main-two">
+    <div class="title">
+        <span class="img"></span><span class="two-pad"></span>
+    </div>
+    <div class="upgrade two-top">
+        <div class="content-a">
+            <div class="content_left">
+                <div class="top">
+                    <h3 class="s-title">账户管理工具</h3>
+                    <div class="top-img"><a target="_blank" href="http://yingxiao.baidu.com/topic/358/index.html " >
+<img src="http://pro.baidu.com/topic/xiaotu/shangdun.jpg"/></a></div>
+                     <div class="float">
+                <span>帮您轻松屏蔽恶意点击，提升转化</span>
+                     </div>
+                    <div class="img-left">
+                        <div class="left-top">
+                                                   <h3><span class="s-icon"></span><span class="key-word"><a href = "http://yingxiao.baidu.com/topic/415/ "  target="_blank">关键词规划师</a></span></h3>
+                        <p class="fsmall">独有效果预估、智能词包，帮助您更精准高效的提词。
+</p>
+                        </div>
+                        <div class="left-bottom">
+                                                   <h3><span class="s-icon"></span><span class="key-word"><a href = "http://yingxiao.baidu.com/product/fc/207.html "  target="_blank">展现诊断工具</a></span></h3>
+                        <p class="fsmall">帮助客户和客服自主排查、诊断创意【无展现】等展现相关的问题
+</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="content-bottom border-line">
+                    <ul class="bottom-ul clearfix">
+                        <li class="bottom-li key-word"><a href="http://yingxiao.baidu.com/product/fc/19.html " target="_blank"><span class="s-icon"></span>推广实况</a></li><li class="bottom-li key-word"><a href="http://yingxiao.baidu.com/product/fc/20.html " target="_blank"><span class="s-icon"></span>历史操作记录</a></li><li class="bottom-li key-word"><a href="http://yingxiao.baidu.com/product/other/267.html " target="_blank"><span class="s-icon"></span>小A智投</a></li><li class="bottom-li key-word"><a href="http://yingxiao.baidu.com/product/fc/103.html " target="_blank"><span class="s-icon"></span>出价模拟器</a></li><li class="bottom-li key-word"><a href="http://yingxiao.baidu.com/product/fc/94.html " target="_blank"><span class="s-icon"></span>排名倾向自动出价</a></li><li class="bottom-li key-word"><a href="http://yingxiao.baidu.com/product/fc/121.html?id=changjing#ProductContent-8 " target="_blank"><span class="s-icon"></span>动态创意高级管理</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="content-right last-right ">
+                <h3 class="s-title">数据统计工具</h3>
+                <div class="section">
+                                                     <h4 class="attack">
+<a href = "https://tongji.baidu.com/web/welcome/login "  target="_blank">百度统计免费网站流量分析工具</a></h4>
+                <p><span class="douhaoFront"></span><span class="text">想知道访客是如何找到并浏览自己的网站的，在网站上做了些什么？快来试试百度统计吧~
+</span><span class="douhaoBack"></span></p>              
+
+
+                </div>
+                <div class="wrap-ul">
+                    <ul class="clearfix">
+                        <li class="wrap-li"><span class="wrap-icon"></span><a href = "http://index.baidu.com/Helper/?tpl=help&word= "  target="_blank">百度指数：让我们一起探索数据之美</a></li><li class="wrap-li"><span class="wrap-icon"></span><a href = "http://sinan.baidu.com/web/welcome/login  "  target="_blank">百度司南：大数据让决策更高效！ </a></li>
+
+
+
+
+                        <li class="wrap-li clear-bottom"><span class="wrap-icon"></span><a href = "http://yingxiao.baidu.com/bmp/article.html?articleId=5638 "  target="_blank">这样分析搜索词报告价值更高！ </a></li>
+
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="two-bottom">
+        <div class="two-bottom-left">
+            
+            <div class="upgrade-ul">
+                <ul>
+                                    
+                </ul>
+            </div>
+        </div>
+        <div class="two-bottom-right">
+            <h3 class="s-title">其他辅助工具</h3>
+            <div class="upgrade-ul">
+                <ul>
+                    <li class="wrap-li"><span class="wrap-icon"></span><a href = "http://qiao.baidu.com/home/index.html"  target="_blank">百度商桥：最懂你的在线客服系统</a></li>
+                    <li class="wrap-li mr"><span class="wrap-icon"></span><a href = "http://lxb.baidu.com/lxb/ 
+"  target="_blank">离线宝：全面提升电话商机</a></li>
+                    <li class="wrap-li clearb"><span class="wrap-icon"></span><a href = "http://yingxiao.baidu.com/product/fc/141.html "  target="_blank">竞争对手分析：知己知彼，百战不殆</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<div class="main-side">
+    <div class="main-side-first">
+        <div class="side-title">BMP计划</div>
+        <div class="side-wrap">
+            <div class="side-ad"><a href = "http://yingxiao.baidu.com/bmp/article.html?articleId=6015&id=yx" target = "_blank">
+<img src = "http://pro.baidu.com/topic/BMP/bmp.jpg"/></a></div>
+            <div class="first-text"><span>互联网的飞速发展对人们的生活和传统行业带来巨大影响，作为与人们最为密切的生活服务领域也不断与互联网相结合，互联网的发展正代领中国本地生活服务的发展，随着居民生活服务供给日益丰富、方式不断创新，生活服务行业消费也是快速增长，并且保持较高的增长快速度。BMP沙龙引领生活服务行业企业突破现状，挖掘商机。</span></div>
+
+
+    </div>
+
+    </div>
+    <div class="main-side-two">
+        <div class="two-head">
+                <span id ="two-head1" ><span class = "weight">热门产品</span><span class="current"></span>                  
+   </span>
+    <span class="middle"></span>
+    <span id = "two-head2" class="a-right">
+          <span>最新产品</span><span class="no"></span>          
+    </span>
+
+        </div>
+        <div id = "two-list1"class="two-list">
+            <ul class="">
+                                              <li><span  class = "first"></span><a href = "http://yingxiao.baidu.com/bmp/yx/selfIndex.html?expertId=49545  " target="_blank">信息流</a></li>
+                <li><span class="two" ></span><a href = "http://yingxiao.baidu.com/topic/523/index.html?id=yxzt" target="_blank">线索通
+</a></li>
+                <li><span class="three" ></span><a href = "http://yingxiao.baidu.com/topic/526/index.html?id=yxzt" target="_blank">品牌专区
+</a></li>
+                <li><span  class="four" ></span><a href = "http://yingxiao.baidu.com/product/other/269.html" target="_blank">智能落地页
+</a></li>
+                <li><span class="five"></span><a href = "http://yingxiao.baidu.com/topic/449/?id=0&id=tab1" target="_blank">本地直通车</a></li>
+          
+                                           <li><span  class = "six"></span><a href = "http://yingxiao.baidu.com/product/ma/98.html" target="_blank">知识营销
+</a></li>
+                <li><span class="seven" ></span><a href = "http://pro.baidu.com/product/other/305.html?preview=1&id=yxzt" target="_blank">百度有钱花·推广贷
+</a></li>
+                <li><span class="eight" ></span><a href = "http://yingxiao.baidu.com/product/site/qipaoxian.html" target="_blank">品牌起跑线
+</a></li>
+                <li><span  class="nine" ></span><a href = "http://shantou.baidu.com/#/introduction/product_advantages" target="_blank">闪投
+</a></li>
+                <li class="no-bottom "><span class="ten"></span><a href = "http://yingxiao.baidu.com/product/site/tongji.html" target="_blank"> 百度统计
+</a></li>
+          
+            </ul>
+        </div>
+        <div id = "two-list2"class="two-list">
+            <ul class="">
+                                              <li><span  class = "first"></span><a href = "http://yingxiao.baidu.com/bmp/yx/selfIndex.html?expertId=49545  " target="_blank">信息流
+</a></li>
+                <li><span class="two" ></span><a href = "http://yingxiao.baidu.com/topic/520/index.html?id=yxzt" target="_blank">行业定投
+</a></li>
+                <li><span class="three" ></span><a href = "http://yingxiao.baidu.com/topic/523/index.html?id=yxzt" target="_blank">线索通
+</a></li>
+                <li><span  class="four" ></span><a href = "http://yingxiao.baidu.com/product/other/269.html" target="_blank">智能落地页
+</a></li>
+                <li><span class="five"></span><a href = "http://yingxiao.baidu.com/product/other/267.html" target="_blank">小A智投
+</a></li>
+          
+                                           <li><span  class = "six"></span><a href = "http://yingxiao.baidu.com/topic/496/index.html" target="_blank">页面投放
+</a></li>
+                <li><span class="seven" ></span><a href = "http://pro.baidu.com/product/other/305.html?preview=1&id=yxzt" target="_blank">百度有钱花·推广贷
+</a></li>
+                <li><span class="eight" ></span><a href = "http://yingxiao.baidu.com/topic/497/index.html?id=daohang" target="_blank">好词快投
+</a></li>
+                <li><span  class="nine" ></span><a href = "http://pro.baidu.com/product/fc/314.html?preview=1&id=gg" target="_blank">快照装修
+</a></li>
+                <li class="no-bottom "><span class="ten"></span><a href = "http://yingxiao.baidu.com/product/fc/214.html" target="_blank"> 泛品牌独秀
+</a></li>
+          
+            </ul>
+        </div>
+    </div>
+    <div class="main-side-three">
+        <div class="side-title">热门问题</div>
+        <div class ="content">
+            <div class="side-three-wrap">
+                <div class="side-three-content">
+                    <div class="search">
+                        <input id="wd" name="keyword" placeholder="输入您遇到的问题">
+                        <form id="searchForm" action=" " style ="display:none;" target="_blank"></form>
+                        <div id="searchBtn" class="searchBtn bg"></div>
+                    </div>
+                    <div class="three-ul-wrap">
+                        <ul class="font">
+                            <li class="backf"><span class="img"></span><span><a href = "http://yingxiao.baidu.com/zhichi/knowledge/detail.action?knowledgeId=14420&channelId=1&classId=390"  target="_blank">如何排查质量度问题？</a></span></li><li class="backf"><span class="img"></span><span><a href = "http://yingxiao.baidu.com/zhichi/knowledge/detail.action?knowledgeId=14421&channelId=1&classId=390"  target="_blank">如何排查cpc突增的问题？</a></span></li><li class="backf"><span class="img"></span><span><a href = "http://yingxiao.baidu.com/zhichi/knowledge/detail.action?knowledgeId=14419&channelId=1&classId=390"  target="_blank">展现突增突降？Ctr突降？</a></span></li><li class="backf"><span class="img"></span><span><a href = "http://yingxiao.baidu.com/zhichi/knowledge/detail.action?knowledgeId=14418&channelId=1&classId=390"  target="_blank">展现与物料不符？</a></span></li><li class="backf"><span class="img"></span><span><a href = "http://yingxiao.baidu.com/zhichi/knowledge/detail.action?knowledgeId=14417&channelId=1&classId=390"  target="_blank">如何排查不展现问题？</a></span></li><li class="backf"><span class="img"></span><span><a href = "http://yingxiao.baidu.com/zhichi/knowledge/detail.action?knowledgeId=14282&channelId=3&classId=390"  target="_blank">网盟推广与搜索推广是什么关系</a></span></li><li class="backf"><span class="img"></span><span><a href = "http://yingxiao.baidu.com/support/fc/detail_12983.html"  target="_blank">闪投使用常见问题</a></span></li><li class="backf"><span class="img"></span><span><a href = "http://yingxiao.baidu.com/support/fc/detail_13374.html"  target="_blank">卡片样式拆分全流量上线</a></span></li><li class="backf"><span class="img"></span><span><a href = "http://yingxiao.baidu.com/support/qiao/detail_10780.html"  target="_blank">商桥移动客户端常见问题</a></span></li><li class="backf"><span class="img"></span><span><a href = "http://yingxiao.baidu.com/support/wm/detail_11133.html"  target="_blank">关键词推荐工具入口</a></span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="main-side-four">
+        <div class="side-title">关注微信</div>
+        <div class="wrap-img">
+            <span class="img"></span>
+        </div>
+    </div>
+</div>
+</div>
+</div>
+</div>
+<div class="service_box">
+  <ul class="tab_nav">
+    <li><a href="http://ikefu.baidu.com/web/yxzx"><i class="icon icon_1"></i>机器客服</a></li>
+    <li><a href="#"><i class="icon icon_2"></i>关注我们</a></li>
+  </ul>
+  <div class="tab_content">
+    <div class="tab_plan">
+      <p class="fs14 mt10">点击呼叫机器人<br />
+        <a target="_blank" href="http://ikefu.baidu.com/web/yxzx" class="qq_link"><img border="0" src="http://yingxiao.baidu.com/topic/testjqr/images/2.png" alt="点击呼叫机器人" title="点击呼叫机器人" width="130" height="130"></a></p>
+
+    </div>
+    <div class="tab_plan" style="display: none;"><img src="http://yingxiao.baidu.com/topic/testjqr/images/1.png" alt="官方微信自助客服" width="130" height="130">
+      <p>扫一扫关注营销平台</p>
+    </div>
+  </div>
+</div>
+<div class="footer">
+    <div class="footer-top"><div class = "wrap"><span class="first"></span><span class="two">联系我们：   了解更多产品拨打 400  800 8888</span><span class="three"><strong>|</strong>    售后服务请拨打 400 890 0088</span> </div></div>
+    <div class="footer-bottom">
+        <div class="footer-wrap ">
+                <span>&copy; All Right Reserved</span>
+                <a class ="footer-icon" href="http://www.baidu.com" target="_blank"><span class="img"></span></a>
+                <span>| <a href="http://www.baidu.com/duty/index.html" target="_blank">使用百度前必读</a></span>
+        </div>
+    </div>
+</div>
+<script src="http://pro.baidu.com/product/site/jun_newIndex/js/jquery-1.8.3.min.js"></script>
+<script src="http://pro.baidu.com/product/site/jun_newIndex/js/Xslider.js"></script>
+<script src="http://pro.baidu.com/product/site/jun_newIndex/js/main20150201.js"></script>
+
+
+<script>
+    $(function(){
+
+
+        var s = {
+                picdata:                  
+                [
+                	                                    {src: 'http://pro.baidu.com/topic/logo/740X370jieriyingxiiao.jpeg', url: 'http://yingxiao.baidu.com/bmp/article.html?articleId=6155&id=yxzt'}
+                                                        	                                   ,{src: 'http://pro.baidu.com/topic/538/740-370.jpg', url: 'http://yingxiao.baidu.com/topic/538/hunqing.html#daohang?id=yxzt'}
+	                                                	                                   ,{src: 'http://pro.baidu.com/topic/logo/740+370xst.jpeg', url: 'http://yingxiao.baidu.com/bmp/yx/article.html?articleId=6141&id=yxzt'}
+	                                                	                                   ,{src: 'http://pro.baidu.com/topic/logo/740X370xinxiliu.jpeg', url: 'http://yingxiao.baidu.com/bmp/yx/article.html?articleId=6131&id=yxzt'}
+	                                                	                                   ,{src: 'http://pro.baidu.com/topic/550/740-370.jpg', url: 'http://yingxiao.baidu.com/topic/550/index.html?id=yxzt'}
+	                                                	                                   ,{src: 'http://pro.baidu.com/topic/logo/740370hangyedingtou.jpeg', url: 'http://yingxiao.baidu.com/bmp/article.html?articleId=6104&id=yxzt'}
+	                                                                ]
+                };
+
+        init({
+            picroot:"",
+            picdata:s.picdata
+        });
+
+    });
+
+</script>
+<script type="text/javascript">
+$(".service_box .tab_nav li").hover(function(){
+var i=$(this).index();
+$(this).addClass("active").siblings().removeClass("active");
+$(".service_box .tab_plan:eq("+i+")").show().siblings().hide();
+});
+$(function(){
+var t;
+$(".service_box").hover(function(){
+$(".service_box").animate({right:0},300)
+clearTimeout(t);
+},function(){
+t=setTimeout(function(e){
+$(".service_box").animate({right:"-146px"},300);
+$(".service_box").find(".tab_nav li").removeClass("active");
+},1000);
+});
+});
+var isTransition=true;
+$(".m_logo").hover(function(){
+var r=0;
+if(isTransition){
+animateTime = setInterval(function(){
+if (r>=153){
+clearInterval(animateTime);
+isTransition=true;
+}else{
+isTransition=false;
+r++;
+$(".m_logo a").attr("style","-webkit-mask:-webkit-gradient(radial, 45 25, "+r+", 45 25, "+(r+15)+", from(rgb(0, 0, 0)), color-stop(0.5, rgba(0, 0, 0, 0.2)), to(rgb(0, 0, 0)));")
+};
+},5);
+}
+},function(){
+return;
+});
+
+</script>
+<!--[if lt IE 7]>
+<script type="text/javascript">
+window.onscroll = function(){
+doc_scroll();
+};
+var doc_scroll = function(){
+var height = document.documentElement.clientHeight - 90 ;
+var scroll_top = $(document).scrollTop() ;
+$(".service_box").css({
+"top" : height + scroll_top - 74
+});
+};
+doc_scroll();
+</script>
+<![endif]-->
+
+<script>
+    // 20190307 添加
+    $(function () {
+
+        var oldDate = new Date(2017, 1, 6);
+        var clickNum = [0, 0, 0, 0];
+        var allClick = [];
+        // localStorage.setItem('allClick', []);
+        if (!localStorage.getItem('oldDate')) {
+            localStorage.setItem('oldDate', oldDate);
+        }else {
+            oldDate = new Date(localStorage.getItem('oldDate'));
+        }
+        if (!localStorage.getItem('clickNum')) {
+            localStorage.setItem('clickNum', clickNum);
+
+        }else {
+            console.log(localStorage.getItem('clickNum'))
+            clickNum =  localStorage.getItem('clickNum').split(',');
+        }
+        if (!localStorage.getItem('allClick')) {
+            localStorage.setItem('allClick', allClick);
+        }else {
+            allClick = localStorage.getItem('allClick').split(',');
+        }
+
+
+        $(".tab span").on("click", function () {
+
+            var tabChang = [".tab-content-first", ".tab-content-two"           ,".tab-content-three", ".tab-content-four"];
+            var tabWrap = [".tab-first", ".tab-two",".tab-three"
+                           ,".tab-four"]
+            var index = $(this).index();
+
+
+            for (var i = 0, l = tabChang.length; i < l; i++) {
+                $(tabChang[i]).hide();
+                $(".tab span").removeClass("tab-content-active");
+                $(".tab span").removeClass("tab-nav-active");
+            }
+            $(tabChang[index]).show();
+            $(this).addClass("tab-content-active");
+            $(tabWrap[index]).addClass("tab-nav-active");
+
+
+            // 添加点击次数
+            var newDate = new Date();
+            var nowMonth = parseInt(newDate.getMonth(), 10) + 1;
+            var sMonth = parseInt(newDate.getMonth(), 10) - parseInt(oldDate.getMonth(), 10);
+            // alert(newDate.getMonth())
+            if (sMonth > 0) {
+                allClick[index] = clickNum[index];
+                clickNum[index] = 0;
+                //oldDate = newDate;
+                localStorage.setItem('oldDate', newDate);
+
+            }else {
+                clickNum[index]++;
+            }
+
+            for (var i = 0, l = clickNum.length; i < l; i++) {
+                console.log('第' + (i + 1) +'个TAB' + nowMonth + '月点击次数:' + clickNum[i]);
+            }
+            if (allClick.length > 0) {
+                for (var i = 1, l = allClick.length; i < l; i++) {
+                    console.log('第' + nowMonth + '月点击次数:' + allClick[i]);
+                }
+            }else {
+                console.log("目前没有月统计数目");
+            }
+
+            localStorage.setItem('clickNum', clickNum);
+            localStorage.setItem('allClick', allClick);
+        });
+    });
+      //  添加上下滚动处理函数
+      $(".marqu").Xslider({
+            unitdisplayed: 1,
+            numtoMove: 1,
+            loop: "cycle",
+            dir: "V",
+            autoscroll: 2500,
+            speed: 1200,
+            cb_hover: function() {
+                $("#J_notice").addClass("hover")
+            },
+            cb_out: function() {
+                $("#J_notice").removeClass("hover")
+            }
+        });
+</script>
+</body>
+</html>

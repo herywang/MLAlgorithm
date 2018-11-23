@@ -1,0 +1,6 @@
+color,status,item1,item2,item3,item4,result
+white,up,1,1,0,0,cat
+white,down,1,1,0,1,pig
+red,up,0,1,1,1,dog
+red,down,1,1,1,0,mjl
+red,up,1.9,12,9.1,-9,xmq
