@@ -1,1 +1,4 @@
+# git ignore configure file
 .idea*
+# git ignore test file
+mytest/*
