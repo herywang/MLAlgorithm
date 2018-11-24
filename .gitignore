@@ -3,3 +3,4 @@
 # git ignore test file
 mytest/*
 **/__pycache__/*
+test*/

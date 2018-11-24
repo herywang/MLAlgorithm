@@ -11,26 +11,28 @@ def softmax_loss_naive(w, x, y, reg):
     :return:二元组：loss:数据损失值， dw：权重w对应的梯度，其形状和w相同
     """
     loss = 0.0
-    dw = np.zeros_like(W)
+    dw = np.zeros_like(w)
     #############################################################################
     #  任务：使用显式循环实现softmax损失值loss及相应的梯度dW 。                    #
     #  温馨提示： 如果不慎,将很容易造成数值上溢。别忘了正则化哟。                   #
     #############################################################################
-    num_train = x.shape[0]
+    num_train, dim = x.shape
     num_class = w.shape[1]
+    score = x.dot(w)
+    score_max = np.max(score, axis=1).reshape(num_train, 1)
+    # 计算对数概率， prob.shape = N*D, 每一行与一个样本对应， 每一行的概率和为1
+    z = np.sum(np.exp(score - score_max), axis=1, keepdims=True)
+    z1 = np.sum(np.exp(score - score_max), axis=1)
+    e_j =  np.exp(score - score_max)
+    prob = e_j / z
+    print(np.sum(prob, axis=1), prob.shape)
     for i in range(num_train):
-        s = x[i].dot(w)
-        score = s - np.max(s)
-        score_E = np.exp(score)
-        z = np.sum(score_E)
-        score_y_o = score_E[y[i]]
-        loss += -np.log(score_y_o / Z)
+        loss += -np.log(prob[i, y[i, 0]]) # loss = 1 - prob[i, y[i, 0]], loss = log(loss), so loss = -np.log(prob[i, y[i]])
         for j in range(num_class):
             if j == y[i]:
-                dw[:, j] += -(1-score_E[j]/z) * x[i]
+                dw[:, j] += -(1-prob[i, j]) * x[i]
             else:
-                dw[:, j] += x[i] * score_E[j]/z
-    loss = loss/num_train + 0.5*reg*np.sum(w*w)
-    dw = dw / num_train + reg*w
-
+                dw[:, j] += prob[i, j] * x[i]
+    loss = loss / num_train + 0.5 * reg * np.sum(w*w)
+    dw = dw / num_train + reg * w
     return loss, dw

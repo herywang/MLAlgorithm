@@ -42,9 +42,3 @@ def get_normalization_cifar10_data(path):
     X_train  = (X_train - mean)/std
     X_test = (X_test - mean)/std
     return X_train, Y_train, X_test, Y_test
-
-
-if __name__ == '__main__':
-    x_train, y_train, x_test, y_test = get_normalization_cifar10_data('../../DATASETS/cifar-10-batches-py')
-    print(x_train.max(), x_train.min())
-    print(x_train.shape, y_train.shape, x_test.shape, y_test.shape)
