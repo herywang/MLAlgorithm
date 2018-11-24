@@ -2,3 +2,4 @@
 .idea*
 # git ignore test file
 mytest/*
+**/__pycache__/*
