@@ -49,7 +49,6 @@ class Solution:
             if tmp_node.right is not None:
                 q.append(tmp_node.right)
         return tree_value
-                        
 
 class TreeNode:
 
