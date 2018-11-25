@@ -9,6 +9,7 @@ class Solution:
 
     def __init__(self):
         self.values = []
+        self.array = None
 
     def preorderTraversal(self, node):
         if node is None:
@@ -50,6 +51,23 @@ class Solution:
                 q.append(tmp_node.right)
         return tree_value
 
+    '''
+    二叉树的顺序存储
+    '''
+    def tree2array(self, root, len):
+        self.array = [None] * len
+        self.__toArrar(root, 0)
+
+    def __toArrar(self, node, pos):
+        if node is None:
+            return
+        self.array[pos] = node.value
+        self.__toArrar(node.left, 2*pos + 1)
+        self.__toArrar(node.right, 2*pos + 2)
+            
+
+
+
 class TreeNode:
 
     def __init__(self, val=None, left=None, right=None):
@@ -83,3 +101,6 @@ if __name__ == '__main__':
     print('层序遍历：')
     values = solution.leverorder(tree)
     print(values)
+    print('二叉树的顺序存储：')
+    solution.tree2array(tree, 16)
+    print(solution.array)
