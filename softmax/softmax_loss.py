@@ -52,7 +52,6 @@ class Softmax:
     @staticmethod
     def softmax_loss_naive_vec(w, x, y, reg):
         """
-           使用显示循环版本计算softmax损失函数
            N:数据个数， D：数据维度， C:数据类别个数
            inputs:
            :param w: shape:[D, C], 分类器权重参数
