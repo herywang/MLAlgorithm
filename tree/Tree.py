@@ -49,8 +49,17 @@ if __name__ == '__main__':
     # 构建树
     tree = TreeNode('D', 
         TreeNode('B', TreeNode('A'), TreeNode('C')), 
-        TreeNode('E', TreeNode('G', right='F')))
-    print('前序遍历：')
+        TreeNode('E', TreeNode('G', right=TreeNode('F'))))
     solution = Solution()
+    print('前序遍历：')
     solution.preorderTraversal(tree)
     print(solution.values)
+    print('中序遍历：')
+    solution.values = []
+    solution.midorderTreacersal(tree)
+    print(solution.values)
+    print('后序遍历：')
+    solution.values = []
+    solution.postorderTreacersal(tree)
+    print(solution.values)
+
