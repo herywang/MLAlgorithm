@@ -3,6 +3,8 @@ data structure --- Tree
 """
 from __future__ import absolute_import, print_function, division
 
+from collections import deque
+
 class Solution:
 
     def __init__(self):
@@ -31,6 +33,23 @@ class Solution:
             self.postorderTreacersal(node.left)
             self.postorderTreacersal(node.right)
             self.values.extend(node.value)
+    
+    def leverorder(self, node):
+        '''
+            二叉树层序遍历， 借助队列的数据结构，先进先出的是popleft()函数
+        '''
+        q = deque()
+        q.append(node)
+        tree_value = []
+        while len(q) > 0:
+            tmp_node = q.popleft()
+            tree_value.append(tmp_node.value)
+            if tmp_node.left is not None:
+                q.append(tmp_node.left)
+            if tmp_node.right is not None:
+                q.append(tmp_node.right)
+        return tree_value
+                        
 
 class TreeNode:
 
@@ -62,4 +81,6 @@ if __name__ == '__main__':
     solution.values = []
     solution.postorderTreacersal(tree)
     print(solution.values)
-
+    print('层序遍历：')
+    values = solution.leverorder(tree)
+    print(values)
