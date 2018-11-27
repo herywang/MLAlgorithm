@@ -132,7 +132,7 @@ if __name__ == '__main__':
     '''
     # 构建树
     tree = TreeNode('D', 
-        TreeNode('B', TreeNode('A'), TreeNode('C')), 
+        TreeNode('B', TreeNode('A'), TreeNode('C')), \
         TreeNode('E', TreeNode('G', right=TreeNode('F'))))
     solution = Solution()
     print('前序遍历：')
