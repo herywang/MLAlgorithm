@@ -1,4 +1,4 @@
-# priority algorithm.优先级调度算法
+# priority algorithm.优先级调度算法 + 时间片轮回算法python实现
 from collections import deque
 import time
 import random
@@ -26,7 +26,7 @@ class PCB:
 class PriorityAlgorithm:
 
     def __init__(self):
-        self.progresses = deque()
+        self.progresses = []
         self.__progresses_in()
         self.max_index = -1
 
