@@ -51,6 +51,31 @@ class Solution:
                 q.append(tmp_node.right)
         return tree_value
 
+    def sawtooth_order(self, node):
+        flag = 1
+        q = deque()
+        tree_value = []
+        if node is not None:
+            q.append(node)
+        else:
+            raise Exception('node is None!')
+        while len(q) > 0:
+            tmp_value = q.popleft()
+            tree_value.append(tmp_value.value)
+            if flag == 0:
+                if tmp_value.right is not None:
+                    q.append(tmp_value.right)
+                if tmp_value.left is not None:
+                    q.append(tmp_value.left)
+                flag = 1
+            else:
+                if tmp_value.left is not None:
+                    q.append(tmp_value.left)
+                if tmp_value.right is not None:
+                    q.append(tmp_value.right)
+                flag = 0
+        return tree_value
+
     '''
     二叉树的顺序存储
     根节点position: n, 左子树：2*n+1, 右子树：2*n+2
@@ -115,7 +140,6 @@ class Solution:
                 and self.isSampleTree(treeA.right, treeB.right)
 
 
-
 class TreeNode:
 
     def __init__(self, val=None, left=None, right=None):
@@ -161,3 +185,5 @@ if __name__ == '__main__':
         TreeNode('B', TreeNode('A'), TreeNode('C')), \
         TreeNode('E', TreeNode('G', right=TreeNode('F'))))
     print(solution.isSampleTree(tree, treeB))
+    print("sawtooth order:")
+    print(solution.sawtooth_order(tree))
