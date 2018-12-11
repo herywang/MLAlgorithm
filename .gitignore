@@ -4,3 +4,4 @@
 mytest/*
 **/__pycache__/*
 test*/
+**/.ipynb*
