@@ -29,10 +29,21 @@ class Trie:
                 root = root.map[ch]
         return False
 
+    def start_with(self, prefix):
+        root = self.root
+        for ch in prefix:
+            if ch not in root.map:
+                return False
+            else:
+                root = root.map[ch]
+        return True       
+
+
 if __name__ == '__main__':
     trie = Trie()
     trie.insert("hello")
     result = trie.search("hello")
     print(result)
+    print(trie.start_with('hel'))
 
 
