@@ -100,7 +100,6 @@ class Sort:
     def heap_extract_sequence(self, father):
         left = father * 2
         right = father * 2 + 1
-
         if left < len(self.heap) and right < len(self.heap):
             if self.heap[father] > self.heap[left] and self.heap[father] > self.heap[right]:
                 if self.heap[left] < self.heap[right]:
