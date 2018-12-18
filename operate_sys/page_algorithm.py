@@ -5,7 +5,7 @@ class Node(object):
     def __init__(self, page):
         self.page = page
         self.count = 1 # 被访问次数
-    
+        
     def __str__(self):
         return str(self.page)
 
