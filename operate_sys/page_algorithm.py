@@ -5,7 +5,7 @@ class Node(object):
     def __init__(self, page):
         self.page = page
         self.count = 1 # 被访问次数
-        
+
     def __str__(self):
         return str(self.page)
 
@@ -15,7 +15,6 @@ class PageAlgorithm(object):
         self.phy_size = phy_size
         self.queue = deque() # FIFO算法数据结构
         self.lru_structure = []
-
 
     def FIFO(self):
         while True:
