@@ -15,7 +15,8 @@ class PageAlgorithm(object):
         self.phy_size = phy_size
         self.queue = deque() # FIFO算法数据结构
         self.lru_structure = []
-    
+
+
     def FIFO(self):
         while True:
             page_num = input("请输入要访问的页面号：")
