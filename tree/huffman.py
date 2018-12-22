@@ -94,6 +94,6 @@ class Huffman:
         return tree_value
 
 if __name__ == '__main__':
-    tree = Huffman("ksdljflfiowejifldskjfowekldlsfjweojiflsdklfsdlfjdsksfos")
+    tree = Huffman("abcabcabcaaabbdddeeeee")
     print(len(tree.tmp_dict))
     tree.encoded()

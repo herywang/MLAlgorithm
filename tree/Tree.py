@@ -1,5 +1,5 @@
 """
-data structure --- Tree
+value structure --- Tree
 """
 from __future__ import absolute_import, print_function, division
 
