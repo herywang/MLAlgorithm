@@ -1,17 +1,17 @@
 class TreeNode:
-    def __init__(self, data=None):
-        self.pre = None
+    def __init__(self, value=None):
+        self.parent = None
         self.left = None
         self.right = None
-        self.data = data
+        self.value = value
 
-class BBTree(object):
+class BSTree(object):
     def __init__(self):
         self.root = None
 
     def build_tree(self):
         while True:
-            data = input("please input the data that you want to insert to the tree:")
+            data = input("please input the value that you want to insert to the tree:")
             if data == "000":
                 print("Finishing building a binary search tree!")
                 break
@@ -22,20 +22,22 @@ class BBTree(object):
                 else:
                     tmp = self.root
                     while True:
-                        if data > tmp.data and tmp.right is None:
+                        if data > tmp.value and tmp.right is None:
                             tmp.right = node
-                            node.pre = tmp
+                            node.parent = tmp
                             break
-                        elif data > tmp.data and tmp.right is not None:
+                        elif data > tmp.value and tmp.right is not None:
                             tmp = tmp.right
                             continue
-                        elif data < tmp.data and tmp.left is None:
+                        elif data < tmp.value and tmp.left is None:
                             tmp.left = node
-                            node.pre = tmp
+                            node.parent = tmp
                             break
-                        elif data < tmp.data and tmp.left is not None:
+                        elif data < tmp.value and tmp.left is not None:
                             tmp = tmp.left
                             continue
+                        else:
+                            print("Data is already in tree!")
 
     def mid_order(self, root):
         if root is None:
@@ -44,8 +46,21 @@ class BBTree(object):
         print(root.data, end=" ")
         self.mid_order(root.right)
 
-if __name__ == '__main__':
-    tree = BBTree()
-    tree.build_tree()
-    tree.mid_order(tree.root)
+    def get_maximum_depth(self, root):
+        return 0 if root is None else max(self.get_maximum_depth(root.left), self.get_maximum_depth(root.right)) + 1
+
+    def get_minimum_depth(self, root):
+        if root is None:return 0
+        if root.left is None and root.right is None:return 1
+        if root.left is not None and root.right is None: return self.get_minimum_depth(root.left) + 1
+        if root.left is None and root.right is not None: return self.get_minimum_depth(root.right) + 1
+        return min(self.get_minimum_depth(root.left), self.get_minimum_depth(root.right)) + 1
+
+# if __name__ == '__main__':
+#     tree = BSTree()
+#     tree.build_tree()
+#     tree.mid_order(tree.root)
+#     print('\n',tree.get_maximum_depth(tree.root))
+#     print('\n',tree.get_minimum_depth(tree.root))
+
 

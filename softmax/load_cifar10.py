@@ -8,7 +8,7 @@ def load_CIFAR_BATCH(filename):
     """load one batch file"""
     with open(filename, 'rb') as f:
         datadict = p.load(f, encoding='latin1')
-        x = datadict['data']
+        x = datadict['value']
         y = datadict['labels']
         x = x.reshape(10000, 3, 32, 32).transpose(0, 2, 3, 1).astype(np.float32)
         y = np.asarray(y, dtype=np.float32)

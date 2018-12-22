@@ -72,12 +72,12 @@ def drawPie():
 def drawbyfilefata():
     x=[]
     y=[]
-    with open("data.csv","r") as csvfile:
+    with open("value.csv","r") as csvfile:
         plots = csv.reader(csvfile,delimiter=",")
         for plot in plots:
             x.append(float(plot[0]))
             y.append(float(plot[1]))
-    plt.plot(x,y,label="csv File data",color="r")
+    plt.plot(x,y,label="csv File value",color="r")
     plt.title("CSV FILE DATA")
     plt.xlabel("x")
     plt.ylabel("y")
