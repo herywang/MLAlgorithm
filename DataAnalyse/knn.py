@@ -3,7 +3,7 @@ import numpy as np
 from sklearn import neighbors
 from sklearn.metrics import precision_recall_curve
 from sklearn.metrics import classification_report
-from sklearn.cross_validation import train_test_split
+from sklearn.model_selection import train_test_split
 import matplotlib.pyplot as plt
 ''''' 数据读入 '''
 data   = []
