@@ -5,10 +5,7 @@ mytest/*
 **/__pycache__/*
 test*/
 **/.ipynb*
-<<<<<<< HEAD
 **/*.css
 **/.vscode
 **/*.ckpt
-=======
 **/*.csv
->>>>>>> b986d7aaae6c07f2b0775cddd148bd0b13e7e78b
