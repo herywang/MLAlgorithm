@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # 堆叠自动编码机
 # Stacking automatic encoder
 
