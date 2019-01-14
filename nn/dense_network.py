@@ -62,4 +62,4 @@ class NeuralNetwork:
         self.train_op = tf.train.AdamOptimizer(0.0001).minimize(self.J)
 
     def train(self, model=TRAIN_MODEL_NEW, ckpt_file='work/dae.ckpt'):
-        
+        pass
