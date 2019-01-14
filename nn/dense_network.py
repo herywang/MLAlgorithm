@@ -15,6 +15,10 @@ class NeuralNetwork:
         self.hidden_size=1024
         self.n = 784
         self.regcoef = 5e-4
+        self.tf_graph = tf.Graph()
+        self.num_epochs = 200
+        self.corr_frac = 0.1 # 加入噪音比例
+        self.batch_size = 128
         self.X = None
         self.y = None
         self.y_ = None
@@ -37,6 +41,21 @@ class NeuralNetwork:
         y_validation = mnist.validation.labels
         return X_train, y_train, X_test, y_test, X_validation, y_validation
 
+    def add_noise(self, sess, X, corr_frac):
+        X_prime = X.copy()
+        rand = tf.random_uniform(X.shape)
+        X_prime[sess.run(tf.nn.relu(tf.sign(corr_frac - rand))).astype(np.bool)] = 0
+        return X_prime
+
+    def get_mini_batchs(self, X, batch_size):
+        X = np.array(X)
+        length = X.shape[0]
+        for i in range(0, length, batch_size):
+            if i+batch_size < length:
+                yield X[i: i+batch_size]
+            else:
+                yield X[i: ]
+
     def build_model(self):
         print("Building auto-denoising Autoencoder Model v 1.0")
         print("Beginning to build the model")
@@ -56,10 +75,38 @@ class NeuralNetwork:
         self.y_ = a3
         r_y_ = tf.clip_by_value(self.y_, 1e-10, float('inf'))
         r_1_y = tf.clip_by_value(1-self.y_, 1e-10, float('inf'))
-        cost = -tf.reduce_mean(tf.add(tf.multiply(self.y, tf.log(r_y_)),\
+        cost = tf.reduce_mean(tf.add(tf.multiply(self.y, tf.log(r_y_)),\
             tf.multiply(tf.subtract(1.0, self.y), tf.log(r_1_y))))
         self.J = cost + self.regcoef * tf.nn.l2_loss([self.W1])
         self.train_op = tf.train.AdamOptimizer(0.0001).minimize(self.J)
 
     def train(self, model=TRAIN_MODEL_NEW, ckpt_file='work/dae.ckpt'):
-        pass
+        X_train, y_train, X_test, y_test, X_validation, y_validation = self.load_dataset()
+        with self.tf_graph.as_default():
+            self.build_model()
+            saver = tf.train.Saver()
+            with tf.Session() as sess:
+                sess.run(tf.global_variables_initializer())
+                for epoch in range(self.num_epochs):
+                    X_train_prime = self.add_noise(sess, X_train, self.corr_frac)
+                    shuff = list(zip(X_train, X_train_prime))
+                    np.random.shuffle(shuff)
+                    batches = [_ for _ in self.get_mini_batchs(shuff, self.batch_size)]
+                    batch_idx = 0
+                    for batch in batches:
+                        X_batch_raw, X_prime_batch_raw = zip(*batch)
+                        X_batch = np.array(X_batch_raw).astype(np.float32)
+                        X_prime_batch = np.array(X_prime_batch_raw).astype(np.float32)
+                        batch_idx += 1
+
+                        opv, loss = sess.run([self.train_op, self.J], feed_dict={self.X: X_prime_batch, self.y: X_batch})
+                        if batch_idx % 100 == 0:
+                            print('eposh{0}_batch{1}: {2}'.format(epoch, batch_idx, loss))
+                            saver.save(sess, ckpt_file)
+    
+    def run(self, ckpt_file='work/dae.ckpt'):
+        img_file = 'datasets/test'
+
+if __name__ == '__main__':
+    nn = NeuralNetwork()
+    nn.train()
