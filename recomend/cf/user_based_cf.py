@@ -32,9 +32,19 @@ def prepare_data():
                 if not np.isnan(x) and not np.isnan(y):
                     sum += (x-means[i])*(y-means[j])
             corr[i,j] = (sum / (var[i] * var[j])) if (var[i] * var[j]) != 0 else 0
-    print(means)
-    print(var)
-    print(corr)
+
+    # 估计u1会对i2打多少分
+    sum = 0
+    for u in range(data.shape[0]):
+        if not np.isnan(data[u, 1]):
+            sum += (data[u, 1] - means[u]) * corr[0, u]
+    result = means[0] + sum / np.sum(np.abs(corr[0]))
+    #
+    print(result)
+
+    # print(means)
+    # print(var)
+    # print(corr)
 
 
 if __name__ == '__main__':
