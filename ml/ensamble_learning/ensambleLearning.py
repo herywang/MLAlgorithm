@@ -4,6 +4,10 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score
 from joblib import dump, load
+from tensorflow.python.keras.callbacks import TensorBoard
+import tensorflow as tf
+from tensorflow.python.keras.layers import Dense, Dropout
+from tensorflow.python.keras.models import Sequential
 import pandas as pd
 import numpy as np
 
@@ -63,6 +67,23 @@ def build_multi_model(x_train, x_test, y_train, y_test):
     print(accuracy_score(y_test, pre3))
     print(accuracy_score(y_test, pre))
 
+def build_nn_model(x_train, x_test, y_train, y_test):
+    model = Sequential()
+    model.add(Dense(input_shape=x_train[0].shape, units=13))
+    model.add(Dense(128, activation='relu'))
+    model.add(Dropout(0.3))
+    model.add(Dense(64, activation='relu'))
+    model.add(Dropout(0.2))
+    model.add(Dense(2, activation='softmax'))
+    model.compile(optimizer=tf.train.AdamOptimizer(),loss='sparse_categorical_crossentropy',
+              metrics=['accuracy'])
+    print(model.summary())
+    model.fit(x_train, y_train, batch_size=32, epochs=1000,callbacks=[TensorBoard('./logs')])
+    model.save('./nn_model.h5')
+    test_loss, test_acc = model.evaluate(x_test, y_test)
+    print(test_acc)
+
+
 def load_model(x_test, y_test):
     model = load('./model3.joblib')
     result = model.predict(x_test)
@@ -70,5 +91,6 @@ def load_model(x_test, y_test):
 
 if __name__ == "__main__":
     x_train, x_test, y_train, y_test = prepare_data()
-    build_multi_model(x_train, x_test, y_train, y_test)
+    # build_multi_model(x_train, x_test, y_train, y_test)
     # load_model(x_test, y_test)
+    build_nn_model(x_train, x_test, y_train, y_test)
