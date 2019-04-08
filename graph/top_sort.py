@@ -57,16 +57,6 @@ class KeyRoute:
                         el[key] = el[k] - Graph[key][k]
         return el
 
-<<<<<<< HEAD
-    @staticmethod
-    def critical_path(Graph, ee, el, topseq):
-        sequence = []
-        for element in topseq:
-            if ee[element] == el[element]:
-                sequence.append(element)
-        return sequence
-=======
->>>>>>> b986d7aaae6c07f2b0775cddd148bd0b13e7e78b
 
 if __name__ == '__main__':
     G = {
@@ -85,10 +75,3 @@ if __name__ == '__main__':
     ete = KeyRoute.event_earliest_time(9, G, S)
     print(ete)
     elt = KeyRoute.event_latest_time(G, S, ete[S[-1]])
-<<<<<<< HEAD
-    print(elt)
-    sequence = KeyRoute.critical_path(G, ete, elt, S)
-    print(sequence)
-=======
-    print(elt)
->>>>>>> b986d7aaae6c07f2b0775cddd148bd0b13e7e78b
