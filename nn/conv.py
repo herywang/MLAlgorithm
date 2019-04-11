@@ -26,8 +26,8 @@ def conv_forward_naivel(x, w, b, conv_param):
     x_pad = np.pad(x, ((0, 0), (pad, pad), (pad, pad), (0, 0)), 'constant',
                    constant_values=[[0, 0], [0, 0], [0, 0], [0, 0]])
 
-    Hhat = 1 + (H - HH + 2*pad) // stride
-    What = 1 + (W - WW + 2*pad) // stride
+    Hhat = 1 + (H - HH + 2 * pad) // stride
+    What = 1 + (W - WW + 2 * pad) // stride
 
     out = np.zeros([N, Hhat, What, w[1]])
     for n in range(N):
@@ -36,6 +36,7 @@ def conv_forward_naivel(x, w, b, conv_param):
                 for j in range(What):
                     kernel = w[:, f, :, :]
                     kernel_reshape = kernel.reshape(kernel[1], kernel[2], kernel[0])
-                    out[n, i, j, f] = x_pad[n, i*stride : i*stride + HH, j*stride:j*stride + WW, :] * kernel_reshape + b[f]
+                    out[n, i, j, f] = x_pad[n, i * stride: i * stride + HH, j * stride:j * stride + WW, :]\
+                                      * kernel_reshape + b[f]
     cache = (x, w, b, conv_param)
     return out, cache
