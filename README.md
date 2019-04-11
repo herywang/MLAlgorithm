@@ -1,2 +1,3 @@
-# MLAlgorithm
-机器学习&amp;数据结构&amp;深度学习&amp;操作系统-相关算法
+
+## Machine learning algorithm
+**In this section, you will know each machine learning algorithm and how to use python to implement.**
