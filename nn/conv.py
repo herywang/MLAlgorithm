@@ -18,7 +18,7 @@ def conv_forward_naivel(x, w, b, conv_param):
         - cache: (x, w, b, conv_param)
     """
     N, H, W, C = x.shape[0], x.shape[1], x.shape[2], x.shape[3]
-    C, HH, WW = w.shape[1], w.shape[2], w.shape[3]
+    CC, HH, WW = w.shape[1], w.shape[2], w.shape[3]
 
     pad = conv_param['pad']
     stride = conv_param['stride']
@@ -29,14 +29,23 @@ def conv_forward_naivel(x, w, b, conv_param):
     Hhat = 1 + (H - HH + 2 * pad) // stride
     What = 1 + (W - WW + 2 * pad) // stride
 
-    out = np.zeros([N, Hhat, What, w[1]])
+    out = np.zeros((N, Hhat, What, CC))
     for n in range(N):
-        for f in range(C):
+        for f in range(CC):
             for i in range(Hhat):
                 for j in range(What):
                     kernel = w[:, f, :, :]
-                    kernel_reshape = kernel.reshape(kernel[1], kernel[2], kernel[0])
-                    out[n, i, j, f] = x_pad[n, i * stride: i * stride + HH, j * stride:j * stride + WW, :]\
-                                      * kernel_reshape + b[f]
+                    kernel_reshape = kernel.reshape(kernel.shape[1], kernel.shape[2], kernel.shape[0])
+                    out[n, i, j, f] = np.sum(x_pad[n, i * stride: i * stride + HH, j * stride:j * stride + WW, :] \
+                                             * kernel_reshape) + b[f]
     cache = (x, w, b, conv_param)
     return out, cache
+
+
+if __name__ == '__main__':
+    image = np.linspace(1, 255, 12000).reshape((10, 20, 20, 3))
+    w = np.random.randn(3, 4, 5, 5)
+    b = np.ones([4])
+    conv_param = {'pad': 2, 'stride': 1}
+    out, cache = conv_forward_naivel(image, w, b, conv_param)
+    print(out.shape)
