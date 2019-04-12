@@ -1,4 +1,5 @@
 import numpy as np
+import cv2
 
 
 def conv_forward_naivel(x, w, b, conv_param):
@@ -43,9 +44,14 @@ def conv_forward_naivel(x, w, b, conv_param):
 
 
 if __name__ == '__main__':
-    image = np.linspace(1, 255, 12000).reshape((10, 20, 20, 3))
-    w = np.random.randn(3, 4, 5, 5)
-    b = np.ones([4])
+    image = np.ones([1, 5, 5, 3]) * 2
+    cv2.imshow("image", np.asarray(image.reshape([5, 5, 3]), np.uint8))
+    w = np.ones([3, 3, 3, 3]) * 3
+    b = np.ones([3])
     conv_param = {'pad': 2, 'stride': 1}
     out, cache = conv_forward_naivel(image, w, b, conv_param)
     print(out.shape)
+    cv2.imshow("conv", np.asarray(out.reshape([7, 7, 3]), np.uint8))
+    cv2.waitKey(0)
+    cv2.destroyAllWindows()
+    print(out.reshape([7, 7, 3]))
