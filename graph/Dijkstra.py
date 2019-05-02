@@ -43,9 +43,5 @@ class Dijkstra(object):
 
 if __name__ == "__main__":
     path = Dijkstra()
-<<<<<<< HEAD
     parent, distance = path.dijkstra('B')
-=======
-    parent, distance = path.dijkstra('A')
->>>>>>> b986d7aaae6c07f2b0775cddd148bd0b13e7e78b
     print(parent, '\n\n', distance)
