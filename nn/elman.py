@@ -5,7 +5,9 @@ INPUT_UNITS = 4
 HIDDEN_UNITS = 9
 UNDER_TAKE_UNITS = HIDDEN_UNITS
 OUTPUT_UNITS = 1
-
+'''
+    Elman神经网络手写实现.
+'''
 
 def build_model():
 
