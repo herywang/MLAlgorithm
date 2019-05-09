@@ -3,6 +3,7 @@
 # git ignore test file
 mytest/*
 **/__pycache__/*
+my_test
 test*/
 **/.ipynb*
 .vscode/
@@ -10,7 +11,6 @@ test*/
 KNN/__pycache__/
 action/kebi/kobi.ipynb
 algorithm/new_file
-ml/creditcard/creditcard_oversample.ipynb
 ml/ensamble_learning/logs/
 ml/ensamble_learning/model1.joblib
 ml/ensamble_learning/model2.joblib
@@ -46,3 +46,8 @@ recomend/ml-1m/README
 recomend/ml-1m/movies.dat
 recomend/ml-1m/ratings.dat
 recomend/ml-1m/users.dat
+ml/ensemble_learning/train/
+nn/work/
+/DataAnalyse/csv_test_data/csv01.csv
+/DataAnalyse/csv_test_data/txt01.txt
+/DataAnalyse/data/.ipynb_checkpoints/
