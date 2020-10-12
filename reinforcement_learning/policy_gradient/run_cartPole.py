@@ -38,14 +38,12 @@ for i_episode in range(3000):
     while True:
         if RENDER: env.render()
 
-        action = RL.choose_action(observation)
-
-        observation_, reward, done, info = env.step(action)
-
-        RL.store_transition(observation, action, reward)
+        action = RL.choose_action(observation)              #agent根据策略\pi进行探索,直到探索结束. 一轮探索的所有结果<observation, action, reward>存储在记忆库中,用于训练
+        observation_, reward, done, info = env.step(action) #所以policy gradient是非常耗时的,大多数时间都花费在与环境交互上
+        RL.store_transition(observation, action, reward)    #每一轮探索都会讲相关的东西
 
         if done:
-            ep_rs_sum = sum(RL.ep_rs)
+            ep_rs_sum = sum(RL.ep_rs)   #所有奖励值之和
 
             if 'running_reward' not in globals():
                 running_reward = ep_rs_sum
@@ -55,12 +53,10 @@ for i_episode in range(3000):
             print("episode:", i_episode, "  reward:", int(running_reward))
 
             vt = RL.learn()
-
             if i_episode == 0:
                 plt.plot(vt)    # plot the episode vt
                 plt.xlabel('episode steps')
                 plt.ylabel('normalized state-action value')
                 plt.show()
             break
-
         observation = observation_

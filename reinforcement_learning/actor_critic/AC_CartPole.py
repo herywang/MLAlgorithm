@@ -75,6 +75,7 @@ class Actor(object):
     def choose_action(self, s):
         s = s[np.newaxis, :]
         probs = self.sess.run(self.acts_prob, {self.s: s})   # get probabilities for all actions
+        # 同样使用一个概率分布的方式选择一个action
         return np.random.choice(np.arange(probs.shape[1]), p=probs.ravel())   # return a int
 
 
@@ -116,6 +117,7 @@ class Critic(object):
     def learn(self, s, r, s_):
         s, s_ = s[np.newaxis, :], s_[np.newaxis, :]
 
+        # v_为critic的输出
         v_ = self.sess.run(self.v, {self.s: s_})
         td_error, _ = self.sess.run([self.td_error, self.train_op],
                                           {self.s: s, self.v_: v_, self.r: r})

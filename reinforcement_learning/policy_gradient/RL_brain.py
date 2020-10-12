@@ -49,6 +49,7 @@ class PolicyGradient:
         with tf.name_scope('inputs'):
             self.tf_obs = tf.placeholder(tf.float32, [None, self.n_features], name="observations")
             self.tf_acts = tf.placeholder(tf.int32, [None, ], name="actions_num")
+            # 选取的action值
             self.tf_vt = tf.placeholder(tf.float32, [None, ], name="actions_value")
         # fc1
         layer = tf.layers.dense(
@@ -73,6 +74,7 @@ class PolicyGradient:
 
         with tf.name_scope('loss'):
             # to maximize total reward (log_p * R) is to minimize -(log_p * R), and the tf only have minimize(loss)
+            # all_act为神经网络输出的行为
             neg_log_prob = tf.nn.sparse_softmax_cross_entropy_with_logits(logits=all_act, labels=self.tf_acts)   # this is negative log of chosen action
             # or in this way:
             # neg_log_prob = tf.reduce_sum(-tf.log(self.all_act_prob)*tf.one_hot(self.tf_acts, self.n_actions), axis=1)
@@ -98,25 +100,26 @@ class PolicyGradient:
         # discount and normalize episode reward
         discounted_ep_rs_norm = self._discount_and_norm_rewards()
 
-        # train on episode
+        # self.ep_as为agent探索过程中的所采取的action(存储在replay buffer中)
+        # self.ep_obs为agent探索过程中的观测值(存储在replay buffer中)
         self.sess.run(self.train_op, feed_dict={
-             self.tf_obs: np.vstack(self.ep_obs),  # shape=[None, n_obs]
-             self.tf_acts: np.array(self.ep_as),  # shape=[None, ]
+             self.tf_obs: np.vstack(self.ep_obs),  # shape=[None, n_obs] agent的观测值
+             self.tf_acts: np.array(self.ep_as),  # shape=[None, ] agent在ep_obs的观测环境下采取的action
              self.tf_vt: discounted_ep_rs_norm,  # shape=[None, ]
         })
-
-        self.ep_obs, self.ep_as, self.ep_rs = [], [], []    # empty episode data
+        # 每一次的重头开始玩游戏, 都重置一下replay buffer中的内容
+        self.ep_obs, self.ep_as, self.ep_rs = [], [], []
         return discounted_ep_rs_norm
 
     def _discount_and_norm_rewards(self):
-        # discount episode rewards
+        # 对奖励进行一个折扣 \sum_{i=0}^{n} {\gamma ^i * r}
         discounted_ep_rs = np.zeros_like(self.ep_rs)
         running_add = 0
         for t in reversed(range(0, len(self.ep_rs))):
             running_add = running_add * self.gamma + self.ep_rs[t]
             discounted_ep_rs[t] = running_add
 
-        # normalize episode rewards
+        # normalize episode rewards 归一化
         discounted_ep_rs -= np.mean(discounted_ep_rs)
         discounted_ep_rs /= np.std(discounted_ep_rs)
         return discounted_ep_rs
