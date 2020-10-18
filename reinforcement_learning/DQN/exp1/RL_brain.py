@@ -14,8 +14,6 @@ import tensorflow as tf
 
 np.random.seed(1)
 tf.set_random_seed(1)
-
-
 # Deep Q Network off-policy
 class DeepQNetwork:
     def __init__(
@@ -113,9 +111,7 @@ class DeepQNetwork:
     def store_transition(self, s, a, r, s_):
         if not hasattr(self, 'memory_counter'):
             self.memory_counter = 0
-
-        transition = np.hstack((s, [a, r], s_))
-
+        transition = np.hstack((s, [a, r], s_)) #存储状态
         # 在replay memory中依次存储记忆, 从上往下, 如果存在则覆盖
         index = self.memory_counter % self.memory_size
         self.memory[index, :] = transition
@@ -128,7 +124,6 @@ class DeepQNetwork:
         if np.random.uniform() < self.epsilon:
             # epsilon为一个随机系数, 比较大的概率我们选择q值最大的action,
             # 但仍然存在一定的概率随机选择一个action, 目的是能够让agent仍然存在一定的概率去探索未知的世界
-
             # 将观测值带入到eval-network中计算出所有action的q值.
             actions_value = self.sess.run(self.q_eval, feed_dict={self.s: observation})
             # 在eval-network中选取q值最大的action索引
@@ -163,7 +158,6 @@ class DeepQNetwork:
 
         # change q_target w.r.t q_eval's action
         q_target = q_eval.copy()
-
         batch_index = np.arange(self.batch_size, dtype=np.int32)
         # [feature1, feature2, feature3, feature4, action, reward, feature1_, feature2_, feature3_, feature4_]
         # 获取行为action的index
