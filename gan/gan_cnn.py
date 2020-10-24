@@ -1,7 +1,7 @@
 from tensorflow.keras.layers import Conv2D, Dropout, Flatten, Dense, Reshape, Conv2DTranspose, ReLU, BatchNormalization, LeakyReLU
 from tensorflow import keras
 
-#
+# generator网络
 def mnist_uni_gen_cnn(input_shape):
     return keras.Sequential([
         # [n, latent] -> [n, 7 * 7 * 128] -> [n, 7, 7, 128]
@@ -9,19 +9,17 @@ def mnist_uni_gen_cnn(input_shape):
         BatchNormalization(),
         ReLU(),
         Reshape((7, 7, 128)),
-        # -> [n, 14, 14, 64]
-        Conv2DTranspose(64, (4, 4), strides=(2, 2), padding='same'),    # up sample
+        Conv2DTranspose(64, (4, 4), strides=(2, 2), padding='same'),    # 上采样-> [n, 14, 14, 64]
         BatchNormalization(),
         ReLU(),
-        # -> [n, 28, 28, 32]
-        Conv2DTranspose(32, (4, 4), strides=(2, 2), padding='same'),
+        Conv2DTranspose(32, (4, 4), strides=(2, 2), padding='same'),    # 上采样-> [n, 28, 28, 32]
         BatchNormalization(),
         ReLU(),
         # -> [n, 28, 28, 1]
         Conv2D(1, (4, 4), padding='same', activation=keras.activations.tanh)
     ])
 
-
+# discriminator网络
 def mnist_uni_disc_cnn(input_shape=(28, 28, 1), use_bn=True):
     model = keras.Sequential()
     # [n, 28, 28, n] -> [n, 14, 14, 64]

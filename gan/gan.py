@@ -3,8 +3,9 @@ from tensorflow import keras
 from visual import save_gan, cvt_gif
 from tensorflow.keras import Sequential
 from tensorflow.keras.layers import Dense
+from keras.losses import binary_crossentropy
 from utils import set_soft_gpu, binary_accuracy, save_weights
-from mnist_ds import get_half_batch_ds
+from mnist_ds import get_half_batch_dataset
 from gan_cnn import mnist_uni_disc_cnn, mnist_uni_gen_cnn
 import time
 
@@ -15,10 +16,10 @@ class GAN(keras.Model):
         self.latent_dim = latent_dim
         self.img_shape = img_shape
 
-        self.g = self._get_generator()
-        self.d = self._get_discriminator()
+        self.g = self._get_generator()      #generator
+        self.d = self._get_discriminator()  #discrimitor
 
-        self.opt = keras.optimizers.Adam(0.0002, beta_1=0.5)
+        self.opt = keras.optimizers.Adam(0.0002, beta_1=0.5)    #优化算法
         self.loss_func = keras.losses.BinaryCrossentropy(from_logits=True)
 
     def call(self, n, training=None, mask=None):
@@ -87,6 +88,6 @@ if __name__ == "__main__":
     EPOCH = 20
 
     set_soft_gpu(True)
-    d = get_half_batch_ds(BATCH_SIZE)
+    d = get_half_batch_dataset(BATCH_SIZE)
     m = GAN(LATENT_DIM, IMG_SHAPE)
     train(m, d, EPOCH)

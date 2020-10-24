@@ -2,11 +2,11 @@ from tensorflow import keras
 import tensorflow as tf
 
 
-def get_half_batch_ds(batch_size):
-    return get_ds(batch_size//2)
+def get_half_batch_dataset(batch_size):
+    return get_mnist_dataset(batch_size // 2)
 
 
-def get_ds(batch_size):
+def get_mnist_dataset(batch_size):
     (x, y), _ = keras.datasets.mnist.load_data()
     x = _process_x(x)
     y = tf.cast(y, tf.int32)

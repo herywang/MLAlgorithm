@@ -4,7 +4,7 @@ import os
 _b_acc = None
 _c_acc = None
 
-
+# 配置gpu
 def set_soft_gpu(soft_gpu):
     if soft_gpu:
         gpus = tf.config.experimental.list_physical_devices('GPU')
