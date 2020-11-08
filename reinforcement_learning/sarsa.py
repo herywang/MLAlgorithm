@@ -1,8 +1,6 @@
 # Sarsa强化学习算法
 import numpy as np
 import pandas as pd
-import time
-import sys
 import tkinter as tk
 
 class RL(object):
@@ -22,7 +20,7 @@ class RL(object):
             )
 
     def choose_action(self, observation):
-        self.check_stat_exist(observation)  #首先检查当前状态是否存在
+        self.check_stat_exist(observation)  # 首先检查当前状态是否存在
         if np.random.rand() < self.epsilon:
             state_actions = self.q_table.loc[observation, :]
             action = np.random.choice(state_actions[state_actions == np.max(state_actions)].index)
