@@ -1,7 +1,6 @@
 from tensorflow import keras
 import tensorflow as tf
 
-
 def get_half_batch_dataset(batch_size):
     return get_mnist_dataset(batch_size // 2)
 

@@ -11,9 +11,10 @@ gym: 0.8.0
 import numpy as np
 import tensorflow as tf
 
+
 # reproducible
 np.random.seed(1)
-tf.set_random_seed(1)
+tf.compat.v1.set_random_seed(1)
 
 
 class PolicyGradient:

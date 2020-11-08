@@ -2,6 +2,11 @@
 import numpy as np
 import pandas as pd
 import tkinter as tk
+import tensorflow.compat.v1 as tf
+
+tf.Session()
+
+
 
 class RL(object):
     def __init__(self,action_space, learning_rate=0.01, reward_decay=0.9,e_greedy=0.9):

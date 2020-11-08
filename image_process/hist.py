@@ -66,7 +66,9 @@ def lin():
     cv2.waitKey(0)
     cv2.destroyAllWindows()
 if __name__ == '__main__':
-    # image = cv2.imread("./data/6.jpg")
+    image = cv2.imread("/Users/wangheng/Desktop/Xnip2020-10-27_17-14-17.jpg")
+    resize = cv2.resize(image, (108, 108))
+    cv2.imwrite("/Users/wangheng/Desktop/ressize.jpg", resize)
     # shape = image.shape
     # height = shape[1] // 2
     # width = shape[0] // 2
