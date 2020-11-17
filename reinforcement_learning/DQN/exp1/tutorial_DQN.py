@@ -101,7 +101,7 @@ def load_ckpt(model):  # load trained weights
 if __name__ == '__main__':
 
     qnetwork = get_model([None, 16])  # 定义inputshape[None,16]。16是state数量
-    qnetwork.train()  # 调用tensorlayer的时候，需要标注这个模型是否可以训练。(再次吐槽tenorlayers...)
+    qnetwork._train_op()  # 调用tensorlayer的时候，需要标注这个模型是否可以训练。(再次吐槽tenorlayers...)
     train_weights = qnetwork.trainable_weights  # 模型的参数
     optimizer = tf.train.AdamOptimizer(learning_rate=0.01) # 定义优化器
     env = gym.make('FrozenLake-v0')  # 定义环境

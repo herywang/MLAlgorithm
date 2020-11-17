@@ -33,8 +33,8 @@ class NeuralNetwork:
 
     def load_dataset(self):
         mnist = input_data.read_data_sets('/home/wangheng/workspace/PycharmProjects/MNIST_data', one_hot=True)
-        X_train = mnist.train.images
-        y_train = mnist.train.labels
+        X_train = mnist._train_op.images
+        y_train = mnist._train_op.labels
         X_test = mnist.test.images
         y_test = mnist.test.labels
         X_validation = mnist.validation.images
