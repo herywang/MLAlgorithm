@@ -7,10 +7,7 @@ gym: 0.8.0
 """
 
 import numpy as np
-import tensorflow._api.v2.compat.v1 as tf
-
-tf.disable_eager_execution()
-tf.disable_v2_behavior()
+import tensorflow as tf
 
 np.random.seed(1)
 tf.set_random_seed(1)
