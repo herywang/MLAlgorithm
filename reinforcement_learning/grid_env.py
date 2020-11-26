@@ -147,6 +147,7 @@ if __name__ == '__main__':
     env.reset()
     env.render()
     # env.env.close()
+    print(env.step())
     time.sleep(10)
     env.close()
 

@@ -75,7 +75,6 @@ class DoubleDQN:
 
         with tf.variable_scope('loss'):
             self.loss = tf.reduce_mean(tf.squared_difference(self.q_target, self.q_eval))
-
         with tf.variable_scope('train'):
             self._train_op = tf.train.RMSPropOptimizer(self.learning_rate).minimize(self.loss)
         # Building the target net.

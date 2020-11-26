@@ -10,9 +10,10 @@ gym: 0.7.3
 
 import numpy as np
 import pandas as pd
-import tensorflow.compat.v1 as tf
-tf.disable_eager_execution()
-tf.disable_v2_behavior()
+# import tensorflow.compat.v1 as tf
+# tf.disable_eager_execution()
+# tf.disable_v2_behavior()
+import tensorflow as tf
 
 np.random.seed(1)
 tf.set_random_seed(1)
@@ -90,7 +91,7 @@ class DeepQNetwork:
         with tf.variable_scope('loss'):
             self.loss = tf.reduce_mean(tf.squared_difference(self.q_target, self.q_eval))
         with tf.variable_scope('train'):
-            self._train_op = tf._train_op.RMSPropOptimizer(self.lr).minimize(self.loss)
+            self._train_op = tf.train.RMSPropOptimizer(self.lr).minimize(self.loss)
 
         # ------------------ build target_net ------------------
         self.s_ = tf.placeholder(tf.float32, [None, self.n_features], name='s_')    # input
