@@ -41,15 +41,10 @@ def train(RL):
         observation = env.reset()
         while True:
             # env.render()
-
             action = RL.choose_action(observation)
-
             observation_, reward, done, info = env.step(action)
-
             if done: reward = 10
-
             RL.store_transition(observation, action, reward, observation_)
-
             if total_steps > MEMORY_SIZE:
                 RL.learn()
 

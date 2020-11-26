@@ -1,9 +1,8 @@
 # Deep successor representation.
-import tensorflow._api.v2.compat.v1 as tf
-
-tf.disable_v2_behavior()
-tf.disable_eager_execution()
-
+"""
+tensorflow 1.5.x
+"""
+import tensorflow as tf
 
 class DSRBrain:
     def __init__(self,action_num, sess: tf.Session, output_graph=False):

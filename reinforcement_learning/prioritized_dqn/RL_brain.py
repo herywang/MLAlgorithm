@@ -59,6 +59,7 @@ class Memory(object):
         self.sample_tree = SumTree(capacity)
 
     def store(self, transition):
+        # 刚存进来的新的transition具有较大的优先级别.
         max_p = np.max(self.sample_tree.tree[-self.sample_tree.capacity:])
         if max_p == 0:
             max_p = self.abs_err_upper
