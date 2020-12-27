@@ -17,7 +17,6 @@ ml/ensamble_learning/model2.joblib
 ml/ensamble_learning/model3.joblib
 ml/ensamble_learning/nn_model.h5
 ml/spam_classifier/email/
-nlp/
 operate_sys/banker_algorithm.py
 recomend/ml-100k/README
 recomend/ml-100k/allbut.pl
