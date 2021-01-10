@@ -7,17 +7,20 @@ MAZE_H = 8  # grid height
 MAZE_W = 8  # grid width
 
 
-class DynaQMaze(tk.Tk, object):
+class DSRMaze(tk.Tk, object):
     def __init__(self, title='maze'):
-        super(DynaQMaze, self).__init__()
+        super(DSRMaze, self).__init__()
         self.action_space = ['u', 'd', 'l', 'r']
-        self.n_actions = len(self.action_space)
-        self.n_features = 2
+        self.action_size = len(self.action_space)
+        self.feature_size = 2
         self.title(title)
         self.geometry('{0}x{1}'.format(MAZE_H * UNIT, MAZE_H * UNIT))
-        self.hells = []
-        self.end = False
+        self._hells = []
         self._build_maze()
+
+        self.state_size = 2
+        self.action_size = 4
+        self.done = False
 
     def _build_maze(self):
         self.canvas = tk.Canvas(self, bg='white', height=MAZE_H * UNIT, width=MAZE_W * UNIT)
@@ -44,7 +47,7 @@ class DynaQMaze(tk.Tk, object):
             hell = self.canvas.create_rectangle(hell_center[0] - 15, hell_center[1] - 15,
                                                 hell_center[0] + 15, hell_center[1] + 15,
                                                 fill='black')
-            self.hells.append(hell)
+            self._hells.append(hell)
 
         goal_origin = np.array([20 + UNIT * 7, 20 + UNIT * 1])
         self.goal = self.canvas.create_oval(goal_origin[0] - 15, goal_origin[1] - 15,
@@ -63,6 +66,7 @@ class DynaQMaze(tk.Tk, object):
         self.agent = self.canvas.create_rectangle(origin[0] - 15, origin[1] - 15,
                                                   origin[0] + 15, origin[1] + 15,
                                                   fill='red')
+        self.done = False
         # return state: the distance about agent position for goal position.
         return (np.array(self.canvas.coords(self.agent)[:2]) - np.array(self.canvas.coords(self.goal)[:2])) / (MAZE_H * UNIT)
 
@@ -70,35 +74,43 @@ class DynaQMaze(tk.Tk, object):
         # agent's position
         s = self.canvas.coords(self.agent)
         base_action = np.array([0, 0])
+        reward = 0
         if action == 0 or action == 'u':   # up
             if s[1] > UNIT and not self.is_hell(s[0], s[1] - UNIT):
                 base_action[1] -= UNIT
+            else:
+                reward = -1
         elif action == 1 or action == 'd':   # down
             if s[1] < (MAZE_H - 1) * UNIT and not self.is_hell(s[0], s[1] + UNIT):
                 base_action[1] += UNIT
+            else:
+                reward = -1
         elif action == 2 or action == 'r':   # right
             if s[0] < (MAZE_W - 1) * UNIT and not self.is_hell(s[0] + UNIT, s[1]):
                 base_action[0] += UNIT
+            else:
+                reward = -1
         elif action == 3 or action == 'l':   # left
             if s[0] > UNIT and not self.is_hell(s[0] - UNIT, s[1]):
                 base_action[0] -= UNIT
+            else:
+                reward = -1
         self.canvas.move(self.agent, base_action[0], base_action[1])  # move agent
         self.update()
-        time.sleep(0.05)
         next_coords = self.canvas.coords(self.agent)  # next state
-        # reward function
         if next_coords == self.canvas.coords(self.goal):
             reward = 1
             done = True
         else:
-            reward = 0
+            if reward != -1:
+                reward = 0
             done = False
-        s_ = (np.array(next_coords[:2]) - np.array(self.canvas.coords(self.goal)[:2]))/(MAZE_H*UNIT)
-        self.end = done
-        return s_, reward
+        s_ = np.expand_dims((np.array(next_coords[:2]) - np.array(self.canvas.coords(self.goal)[:2]))/(MAZE_H*UNIT), axis=0)
+        self.done = done
+        return s_, reward, done
 
     def is_hell(self, x, y):
-        for hell in self.hells:
+        for hell in self._hells:
             hell_coord = self.canvas.coords(hell)
             if hell_coord[0] == x and hell_coord[1] == y:
                 return True
@@ -108,12 +120,12 @@ class DynaQMaze(tk.Tk, object):
         self.update()
 
     def get_current_state(self):
-        return (np.array(self.canvas.coords(self.agent)[:2]) - np.array(self.canvas.coords(self.goal)[:2])) / (MAZE_H * UNIT)
+        return np.expand_dims((np.array(self.canvas.coords(self.agent)[:2]) - np.array(self.canvas.coords(self.goal)[:2])) / (MAZE_H * UNIT), axis=0)
 
 
 
 if __name__ == '__main__':
-    q_maze = DynaQMaze()
+    q_maze = DSRMaze()
     hell = q_maze.is_hell(0, 0)
     while not hell:
         q_maze.step('r')

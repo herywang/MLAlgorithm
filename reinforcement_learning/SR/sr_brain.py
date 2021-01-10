@@ -3,12 +3,17 @@ import matplotlib.pyplot as plt
 import utils
 from sklearn.decomposition import PCA
 from gridworld import SimpleGrid
-import tensorflow as tf
+from tensorflow._api.v2.compat import v1 as tf
+from dsr_maze_env import DSRMaze
+tf.disable_eager_execution()
+tf.disable_v2_behavior()
 
 grid_size = 7
 pattern="four_rooms"
-env = SimpleGrid(grid_size, block_pattern=pattern, obs_mode="index")
-env.reset(agent_pos=[0,0], goal_pos=[0, grid_size-1])
+# env = SimpleGrid(grid_size, block_pattern=pattern, obs_mode="index")
+# env.reset(agent_pos=[0,0], goal_pos=[0, grid_size-1])
+env = DSRMaze()
+env.reset()
 # plt.imshow(env.grid)
 # plt.show()
 sess = tf.Session()
@@ -90,16 +95,14 @@ for i in range(episodes):
         if i == episodes // 2:
             print("\nSwitched reward locations")
         goal_pos = [grid_size-1,grid_size-1]
-    env.reset(agent_pos=agent_start, goal_pos=goal_pos)
-    state = env.observation
+    env.reset()
+    state = env.get_current_state()
     episodic_error = []
     for j in range(train_episode_length):
         action = agent.choose_action(state, epsilon=train_epsilon)
-        reward = env.step(action)
-        state_next = env.observation
-        done = env.done
-        experiences.append([state, action, state_next, reward, done])
-        state = state_next
+        s_, reward, done = env.step(action)
+        experiences.append([state, action, s_, reward, done])
+        state = s_
         if (j > 1):
             # 至少会和环境交互两次. 当前experience: experience[-1], 前一次experience[-2]
             td_sr = agent.update_sr(experiences[-2], experiences[-1])
@@ -112,7 +115,7 @@ for i in range(episodes):
     lifetime_td_errors.append(np.mean(episodic_error))
     
     # Test phase
-    env.reset(agent_pos=agent_start, goal_pos=goal_pos)
+    env.reset()
     state = env.observation
     for j in range(test_episode_length):
         action = agent.choose_action(state, epsilon=test_epsilon)
@@ -122,7 +125,7 @@ for i in range(episodes):
         state = state_next
         if env.done:
             break
-    test_lengths.append(j)
+        test_lengths.append(j)
     
     if i % 50 == 0:
         print('\rEpisode {}/{}, TD Error: {}, Test Lengths: {}'

@@ -1,135 +1,96 @@
 import numpy as np
-import matplotlib.pyplot as plt
-import tkinter as tk
+import tensorflow._api.v2.compat.v1 as tf
+from maze_env import DynaQMaze
 
-ROWS = 6
-COLS = 9
-S = (2, 0)
-G = (0, 8)
-BLOCKS = [(1, 2), (2, 2), (3, 2), (0, 7), (1, 7), (2, 7), (4, 5)]
-ACTIONS = ["left", "up", "right", "down"]
-
-
-class Maze:
-    def __init__(self):
-        self.rows = ROWS
-        self.cols = COLS
-        self.start = S
-        self.goal = G
-        self.blocks = BLOCKS
-        self.state = S
-        self.end = False
-        self.maze = np.zeros((self.rows, self.cols))
-        for b in self.blocks:
-            self.maze[b] = -1
-
-    def step(self, action):
-        r, c = self.state
-        if action == "left":
-            c -= 1
-        elif action == "right":
-            c += 1
-        elif action == "up":
-            r -= 1
-        else:
-            r += 1
-
-        if (0 <= r <= self.rows - 1) and (0 <= c <= self.cols - 1):
-            if (r, c) not in self.blocks:
-                self.state = (r, c)
-
-        if self.state == self.goal:
-            self.end = True
-            reward = 1
-        else:
-            reward = 0
-        return self.state, reward
-
-
-    def showMaze(self):
-        self.maze[self.state] = 1
-        for i in range(0, self.rows):
-            print('-------------------------------------')
-            out = '| '
-            for j in range(0, self.cols):
-                if self.maze[i, j] == 1:
-                    token = '*'
-                if self.maze[i, j] == -1:
-                    token = 'z'
-                if self.maze[i, j] == 0:
-                    token = '0'
-                out += token + ' | '
-            print(out)
-        print('-------------------------------------')
+tf.disable_v2_behavior()
+tf.disable_eager_execution()
 
 
 class DynaAgent:
-
-    def __init__(self, exp_rate=0.3, lr=0.1, n_steps=5, episodes=1):
-        self.maze = Maze()
-        self.state = S
-        self.actions = ACTIONS
-        self.state_actions = []  # state & action track
+    def __init__(self, exp_rate=0.3, lr=0.1, n_steps=5, episodes=1000, sess: tf.Session = None):
+        self.maze = DynaQMaze()
+        self.actions = self.maze.action_space
+        self.n_actions = len(self.actions)
+        self.state_actions = []  # state & action transition
         self.exp_rate = exp_rate
         self.lr = lr
-
         self.steps = n_steps
         self.episodes = episodes  # number of episodes going to play
         self.steps_per_episode = []
-
+        self.state = self.maze.get_current_state()
         self.Q_values = {}
         # model function
         self.model = {}
-        for row in range(ROWS):
-            for col in range(COLS):
-                self.Q_values[(row, col)] = {}
-                for a in self.actions:
-                    self.Q_values[(row, col)][a] = 0
+        self.maze.render()
+        if sess is None:
+            self.sess = tf.Session()
+        else:
+            self.sess = sess
+        self.writer1 = tf.summary.FileWriter('./log/r-1', self.sess.graph)
+        self.writer2 = tf.summary.FileWriter('./log/r-2', self.sess.graph)
+        self.tmp_tensor = tf.placeholder(tf.float32)
+        self.all_reward_summary = tf.summary.scalar('all_reward', self.tmp_tensor)
+        self.all_cnt_summary = tf.summary.scalar('all_cnt', self.tmp_tensor)
 
-    def chooseAction(self):
+        self.write_op = tf.summary.merge_all()
+
+    def choose_action(self):
         # epsilon-greedy
+        action_index = 0
         mx_nxt_reward = -999
-        action = ""
-
         if np.random.uniform(0, 1) <= self.exp_rate:
-            action = np.random.choice(self.actions)
+            action_index = np.random.choice(self.n_actions)
         else:
             # greedy action
-            current_position = self.state
             # if all actions have same value, then select randomly
-            if len(set(self.Q_values[current_position].values())) == 1:
-                action = np.random.choice(self.actions)
+            if self.get_key(self.state) not in self.Q_values.keys():
+                self.Q_values[self.get_key(self.state)] = np.zeros(self.n_actions)
+            if len(set(self.Q_values[self.get_key(self.state)])) == 1:
+                action_index = np.random.choice(self.n_actions)
             else:
-                for a in self.actions:
-                    nxt_reward = self.Q_values[current_position][a]
+                for a_i in range(self.n_actions):
+                    nxt_reward = self.Q_values[self.get_key(self.state)][a_i]
                     if nxt_reward >= mx_nxt_reward:
-                        action = a
+                        action_index = a_i
                         mx_nxt_reward = nxt_reward
-        return action
+        return action_index
 
     def reset(self):
-        self.maze = Maze()
-        self.state = S
+        self.maze.reset()
+        self.state = self.maze.get_current_state()
         self.state_actions = []
 
-    def play(self):
+    def train(self):
+        self.learn(True)
+        self.Q_values = {}
+        self.model = {}
+        self.steps = 0
+        self.learn(False)
+
+    def learn(self, type=True):
         self.steps_per_episode = []
-
         for ep in range(self.episodes):
+            cnt = 0.
             while not self.maze.end:
-                action = self.chooseAction()
-                self.state_actions.append((self.state, action))
-
-                nxtState, reward = self.maze.step(action)
+                action_index = self.choose_action()
+                self.state_actions.append((self.state, action_index))
+                nxtState, reward = self.maze.step(action_index)
+                # 当前state的index.
+                i_state = self.get_key(self.state)
+                # index of next state.
+                i_state_next = self.get_key(nxtState)
                 # update Q-value
-                self.Q_values[self.state][action] += self.lr * (reward + np.max(list(self.Q_values[nxtState].values())) - self.Q_values[self.state][action])
-
+                if i_state_next not in self.Q_values.keys():
+                    self.Q_values[i_state_next] = np.zeros(self.n_actions)
+                if i_state not in self.Q_values.keys():
+                    self.Q_values[i_state] = np.zeros(self.n_actions)
+                self.Q_values[i_state][action_index] += self.lr * (reward + np.max(list(self.Q_values[i_state_next]))
+                                                                   - self.Q_values[i_state][action_index])
                 # update model
-                if self.state not in self.model.keys():
-                    self.model[self.state] = {}
-                self.model[self.state][action] = (reward, nxtState)
+                if i_state not in self.model.keys():
+                    self.model[i_state] = {}
+                self.model[i_state][action_index] = (reward, nxtState)
                 self.state = nxtState
-
                 # loop n times to randomly update Q-value
                 for _ in range(self.steps):
                     # randomly choose an state
@@ -138,40 +99,36 @@ class DynaAgent:
                     # randomly choose an action
                     rand_idx = np.random.choice(range(len(self.model[_state].keys())))
                     _action = list(self.model[_state])[rand_idx]
-
                     _reward, _nxtState = self.model[_state][_action]
-
-                    self.Q_values[_state][_action] += self.lr * (_reward + np.max(list(self.Q_values[_nxtState].values())) - self.Q_values[_state][_action])
+                    self.Q_values[_state][_action] += self.lr * (_reward + np.max(list(self.Q_values[self.get_key(_nxtState)]))
+                                                                 - self.Q_values[_state][_action])
                     # end of game
-            if ep % 10 == 0:
-                print("episode", ep)
+                cnt += 1.
             self.steps_per_episode.append(len(self.state_actions))
             self.reset()
+            np_sum = np.sum(np.hstack(self.Q_values.values())) / cnt
+            summary1 = self.sess.run(self.all_reward_summary, feed_dict={self.tmp_tensor: np_sum})
+            summary2 = self.sess.run(self.all_cnt_summary, feed_dict={self.tmp_tensor: cnt})
+            if type:
+                self.writer1.add_summary(summary1, ep)
+                self.writer1.add_summary(summary2, ep)
+                self.writer1.flush()
+            else:
+                self.writer2.add_summary(summary1, ep)
+                self.writer2.add_summary(summary2, ep)
+                self.writer2.flush()
+
+    def get_key(self, state):
+        s = ''
+        for v in state:
+            s += str(v)
+        return s
 
 
 if __name__ == "__main__":
     N_EPISODES = 50
     # comparison
-    agent = DynaAgent(n_steps=0, episodes=N_EPISODES)
-    agent.play()
-
-    steps_episode_0 = agent.steps_per_episode
-
-    agent = DynaAgent(n_steps=5, episodes=N_EPISODES)
-    agent.play()
-
-    steps_episode_5 = agent.steps_per_episode
-
-    agent = DynaAgent(n_steps=50, episodes=N_EPISODES)
-    agent.play()
-
-    steps_episode_50 = agent.steps_per_episode
-
-    plt.figure(figsize=[10, 6])
-
-    plt.ylim(0, 900)
-    plt.plot(range(N_EPISODES), steps_episode_0, label="step=0")
-    plt.plot(range(N_EPISODES), steps_episode_5, label="step=5")
-    plt.plot(range(N_EPISODES), steps_episode_50, label="step=50")
-    plt.show()
-    plt.legend()
+    sess = tf.Session()
+    agent1 = DynaAgent(n_steps=5, episodes=100, sess=sess)
+    # for i in range(N_EPISODES):
+    agent1.train()

@@ -35,8 +35,8 @@ def run_maze():
 if __name__ == "__main__":
     # maze game
     env = Maze()
-    print("actions num: ", env.n_actions, "\nfeatures: ", env.n_features)
-    RL = DeepQNetwork(env.n_actions, env.n_features,
+    print("actions num: ", env.action_size, "\nfeatures: ", env.feature_size)
+    RL = DeepQNetwork(env.action_size, env.feature_size,
                       learning_rate=0.01,
                       reward_decay=0.9,
                       e_greedy=0.9,
