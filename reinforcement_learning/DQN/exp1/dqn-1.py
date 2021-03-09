@@ -1,7 +1,7 @@
-from keras.layers import Dense, Dropout, Conv2D, MaxPooling2D, Activation, Flatten
-from keras.models import Sequential
-from keras.optimizers import Adam
-from keras.callbacks import TensorBoard
+from tensorflow.keras.layers import Dense, Dropout, Conv2D, MaxPooling2D, Activation, Flatten
+from tensorflow.keras.models import Sequential
+from tensorflow.keras.optimizers import Adam
+from tensorflow.keras.callbacks import TensorBoard
 from collections import deque
 import tensorflow as tf
 
