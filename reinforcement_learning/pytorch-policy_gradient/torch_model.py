@@ -7,7 +7,7 @@ from torch.distributions import Categorical
 from torch.nn import functional as F
 from torch.utils.tensorboard import SummaryWriter
 
-MAX_EPISODE = 30000
+MAX_EPISODE = 1000
 RENDER = True
 
 
@@ -88,7 +88,7 @@ class Agent:
         self.opt.step()
         # 一次学习过后, 清空replay_buffer中的全部数据
         self.replay_buffer.clear()
-        return np.sum(discounted_reward_norm)
+        return np.sum(discounted_reward_norm), discounted_reward_norm.shape[0]
 
     # 将reward进行折扣
     def __discount_and_norm_rewards(self):
@@ -120,8 +120,14 @@ def run():
             agent.replay_buffer.store_transition(observation, action, reward)
             observation = next_observation
             if done:
-                agent.learn()
+                sum_reward, play_time = agent.learn()
+                agent.writer.add_scalar("sum_reward", sum_reward, episode)
+                agent.writer.add_scalar("play_time", play_time, episode)
                 break
+    agent.writer.close()
+    torch.save(agent.model, "./trained_model/whole_model.pt")
+    torch.save(agent.model.state_dict(), "./trained_model/state_dict.pt")
+
     env.close()
 
 
