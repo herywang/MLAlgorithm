@@ -1,11 +1,5 @@
 """
-A from scratch implementation of Transformer network,
-following the paper Attention is all you need with a
-few minor differences. I tried to make it as clear as
-possible to understand and also went through the code
-on my youtube channel!
-
-
+pytorch 手动实现Transformer网络结构
 """
 
 import torch
