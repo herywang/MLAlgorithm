@@ -8,6 +8,7 @@ from torchvision import datasets, transforms
 from torch.optim.lr_scheduler import StepLR
 from torch.utils.tensorboard import SummaryWriter
 
+
 writer = SummaryWriter("./att3")
 
 class Attention(nn.Module):
@@ -133,8 +134,7 @@ def main():
         transforms.Normalize((0.1307,), (0.3081,))
         ])
     dataset1 = datasets.MNIST('./data', train=True, download=True, transform=transform)
-    dataset2 = datasets.MNIST('./data', train=False,
-                       transform=transform)
+    dataset2 = datasets.MNIST('./data', train=False, transform=transform)
     train_loader = torch.utils.data.DataLoader(dataset1,**train_kwargs)
     test_loader = torch.utils.data.DataLoader(dataset2, **test_kwargs)
 
