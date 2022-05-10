@@ -37,7 +37,7 @@ def to_numpy(var):
 
 
 def to_tensor(ndarray, requires_grad=False, dtype=FLOAT):
-    torch.tensor(torch.from_numpy(ndarray), dtype=FLOAT, requires_grad=requires_grad)
+    torch.tensor(torch.from_numpy(ndarray), dtype=torch.float32, requires_grad=requires_grad)
     with torch.no_grad():
         return Variable(torch.from_numpy(ndarray), requires_grad=requires_grad).type(dtype)
 

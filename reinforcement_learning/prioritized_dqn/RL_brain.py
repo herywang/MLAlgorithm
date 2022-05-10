@@ -80,6 +80,7 @@ class Memory(object):
             ISWeights[i, 0] = np.power(prob / min_prob, -self.beta)
             b_idx[i], b_memory[i, :] = idx, data
         return b_idx, b_memory, ISWeights
+
     def batch_update(self, tree_idx, abs_errors):
         abs_errors += self.epsilon  # convert to abs and avoid 0
         clipped_errors = np.minimum(abs_errors, self.abs_err_upper)

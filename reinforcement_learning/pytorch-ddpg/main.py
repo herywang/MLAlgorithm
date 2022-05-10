@@ -22,6 +22,7 @@ def train(num_iterations, agent, env, evaluate, validate_steps, output, max_epis
     observation = None
     while step < num_iterations:
         # reset if it is the start of episode
+
         if observation is None:
             observation = deepcopy(env.reset())
             agent.reset(observation)
@@ -33,7 +34,7 @@ def train(num_iterations, agent, env, evaluate, validate_steps, output, max_epis
             action = agent.select_action(observation)
 
         # env response with next_observation, reward, terminate_info
-        # env.render()
+        env.render()
         observation2, reward, done, info = env.step(action)
         observation2 = deepcopy(observation2)
         if max_episode_length and episode_steps >= max_episode_length - 1:
@@ -89,7 +90,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='PyTorch on TORCS with Multi-modal')
 
     parser.add_argument('--mode', default='train', type=str, help='support option: train/test')
-    parser.add_argument('--env', default='Pendulum-v0', type=str, help='open-ai gym environment')
+    parser.add_argument('--env', default='Humanoid-v2', type=str, help='open-ai gym environment')
     parser.add_argument('--hidden1', default=400, type=int, help='hidden num of first fully connect layer')
     parser.add_argument('--hidden2', default=300, type=int, help='hidden num of second fully connect layer')
     parser.add_argument('--rate', default=0.001, type=float, help='learning rate')

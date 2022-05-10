@@ -79,10 +79,10 @@ class DoubleDQN:
                 ['eval_net_params', tf.GraphKeys.GLOBAL_VARIABLES], 20, \
                 tf.random_normal_initializer(0., 0.3), tf.constant_initializer(0.1)  # config of layers
 
-            self.q_eval = build_layers(self.s, c_names, n_l1, w_initializer, b_initializer)
+            self.q_eval_net = build_layers(self.s, c_names, n_l1, w_initializer, b_initializer)
 
         with tf.variable_scope('loss'):
-            self.loss = tf.reduce_mean(tf.squared_difference(self.q_target, self.q_eval))
+            self.loss = tf.reduce_mean(tf.squared_difference(self.q_target, self.q_eval_net))
         with tf.variable_scope('train'):
             self._train_op = tf.train.RMSPropOptimizer(self.lr).minimize(self.loss)
 
@@ -91,7 +91,7 @@ class DoubleDQN:
         with tf.variable_scope('target_net'):
             c_names = ['target_net_params', tf.GraphKeys.GLOBAL_VARIABLES]
 
-            self.q_next = build_layers(self.s_, c_names, n_l1, w_initializer, b_initializer)
+            self.q_target_net = build_layers(self.s_, c_names, n_l1, w_initializer, b_initializer)
 
     def store_transition(self, s, a, r, s_):
         if not hasattr(self, 'memory_counter'):
@@ -103,7 +103,7 @@ class DoubleDQN:
 
     def choose_action(self, observation):
         observation = observation[np.newaxis, :]
-        actions_value = self.sess.run(self.q_eval, feed_dict={self.s: observation})
+        actions_value = self.sess.run(self.q_eval_net, feed_dict={self.s: observation})
         action = np.argmax(actions_value)
 
         if not hasattr(self, 'q'):  # record action value it gets
@@ -128,10 +128,10 @@ class DoubleDQN:
         batch_memory = self.memory[sample_index, :]
 
         q_next, q_eval4next = self.sess.run(
-            [self.q_next, self.q_eval],
+            [self.q_target_net, self.q_eval_net],
             feed_dict={self.s_: batch_memory[:, -self.n_features:],    # next observation
                        self.s: batch_memory[:, -self.n_features:]})    # next observation
-        q_eval = self.sess.run(self.q_eval, {self.s: batch_memory[:, :self.n_features]})
+        q_eval = self.sess.run(self.q_eval_net, {self.s: batch_memory[:, :self.n_features]})
 
         q_target = q_eval.copy()
 

@@ -11,11 +11,16 @@ from util import *
 
 # from ipdb import set_trace as debug
 
-criterion = nn.MSELoss()
+lossFunction = nn.MSELoss()
 
 
-class DDPG(object):
+class DDPG:
     def __init__(self, nb_states, nb_actions, args):
+        """
+        :param nb_states: number of states.
+        :param nb_actions: number of actions.
+        :param args: the other parameters.
+        """
 
         if args.seed > 0:
             self.seed(args.seed)
@@ -42,6 +47,7 @@ class DDPG(object):
 
         # Hyper-parameters
         self.batch_size = args.bsize
+        # soft-update coefficient.
         self.tau = args.tau
         self.discount = args.discount
         self.depsilon = 1.0 / args.epsilon
@@ -52,8 +58,6 @@ class DDPG(object):
         self.a_t = None  # Most recent action
         self.is_training = True
 
-        # 
-        if USE_CUDA: self.cuda()
 
     def update_policy(self):
         # Sample batch
@@ -67,20 +71,21 @@ class DDPG(object):
 
         # Critic update
         self.critic.zero_grad()
-
         q_batch = self.critic([to_tensor(state_batch), to_tensor(action_batch)])
-
-        value_loss = criterion(q_batch, target_q_batch)
+        value_loss = lossFunction(q_batch, target_q_batch)
+        # 计算出梯度
         value_loss.backward()
+        # 执行优化
         self.critic_optim.step()
 
         # Actor update
         self.actor.zero_grad()
-
-        policy_loss = -self.critic([to_tensor(state_batch), self.actor(to_tensor(state_batch))])
-
+        actor_action_batch = self.actor(to_tensor(state_batch))
+        policy_loss = -self.critic([to_tensor(state_batch), actor_action_batch])
         policy_loss = policy_loss.mean()
+        # 计算出梯度
         policy_loss.backward()
+        # 执行优化
         self.actor_optim.step()
 
         # Target update
@@ -88,6 +93,12 @@ class DDPG(object):
         soft_update(self.critic_target, self.critic, self.tau)
 
     def eval(self):
+        """
+        训练完train样本后，生成的模型model要用来测试样本。在model(test)之前，
+        需要加上model.eval()，否则的话，有输入数据，即使不训练，它也会改变权值。
+        这是model中含有batch normalization层和Dropout所带来的的性质。
+        :return:
+        """
         self.actor.eval()
         self.actor_target.eval()
         self.critic.eval()

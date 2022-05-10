@@ -18,11 +18,11 @@ tf.set_random_seed(2)  # reproducible
 OUTPUT_GRAPH = False
 MAX_EPISODE = 3000
 DISPLAY_REWARD_THRESHOLD = 200  # renders environment if total episode reward is greater then this threshold
-MAX_EP_STEPS = 1000   # maximum time step in one episode
+MAX_EP_STEPS = 1000  # maximum time step in one episode
 RENDER = False  # rendering wastes time
-GAMMA = 0.9     # reward discount in TD error
-LR_A = 0.001    # learning rate for actor
-LR_C = 0.01     # learning rate for critic
+GAMMA = 0.9  # reward discount in TD error
+LR_A = 0.001  # learning rate for actor
+LR_C = 0.01  # learning rate for critic
 
 env = gym.make('CartPole-v0')
 env.seed(1)  # reproducible
@@ -43,17 +43,17 @@ class Actor(object):
         with tf.variable_scope('Actor'):
             l1 = tf.layers.dense(
                 inputs=self.s,
-                units=20,    # number of hidden units
+                units=20,  # number of hidden units
                 activation=tf.nn.relu,
-                kernel_initializer=tf.random_normal_initializer(0., .1),    # weights
+                kernel_initializer=tf.random_normal_initializer(0., .1),  # weights
                 bias_initializer=tf.constant_initializer(0.1),  # biases
                 name='l1'
             )
 
             self.acts_prob = tf.layers.dense(
                 inputs=l1,
-                units=n_actions,    # output units
-                activation=tf.nn.softmax,   # get action probabilities
+                units=n_actions,  # output units
+                activation=tf.nn.softmax,  # get action probabilities
                 kernel_initializer=tf.random_normal_initializer(0., .1),  # weights
                 bias_initializer=tf.constant_initializer(0.1),  # biases
                 name='acts_prob'
@@ -74,9 +74,9 @@ class Actor(object):
 
     def choose_action(self, s):
         s = s[np.newaxis, :]
-        probs = self.sess.run(self.acts_prob, {self.s: s})   # get probabilities for all actions
+        probs = self.sess.run(self.acts_prob, {self.s: s})  # get probabilities for all actions
         # 同样使用一个概率分布的方式选择一个action
-        return np.random.choice(np.arange(probs.shape[1]), p=probs.ravel())   # return a int
+        return np.random.choice(np.arange(probs.shape[1]), p=probs.ravel())  # return a int
 
 
 class Critic(object):
@@ -110,39 +110,38 @@ class Critic(object):
 
         with tf.variable_scope('squared_TD_error'):
             self.td_error = self.r + GAMMA * self.v_ - self.v
-            self.loss = tf.square(self.td_error)    # TD_error = (r+gamma*V_next) - V_eval
+            self.loss = tf.square(self.td_error)  # TD_error = (r+gamma*V_next) - V_eval
         with tf.variable_scope('train'):
             self.train_op = tf.train.AdamOptimizer(lr).minimize(self.loss)
 
     def learn(self, s, r, s_):
-        s, s_ = s[np.newaxis, :], s_[np.newaxis, :] #将状态向量的维度变为2维.
+        s, s_ = s[np.newaxis, :], s_[np.newaxis, :]  # 将状态向量的维度变为2维.
 
         # v_为critic的输出, 根据下一个状态s_, 获取critic的输出v_(s)
         v_ = self.sess.run(self.v, {self.s: s_})
-        td_error, _ = self.sess.run([self.td_error, self.train_op],
-                                          {self.s: s, self.v_: v_, self.r: r})
+        td_error, _ = self.sess.run([self.td_error, self.train_op], feed_dict={self.s: s, self.v_: v_, self.r: r})
         return td_error
 
 
 if __name__ == '__main__':
     sess = tf.Session()
     actor = Actor(sess, n_features=N_F, n_actions=N_A, lr=LR_A)
-    critic = Critic(sess, n_features=N_F, lr=LR_C)     # we need a good teacher, so the teacher should learn faster than the actor
+    critic = Critic(sess, n_features=N_F, lr=LR_C)  # we need a good teacher, so the teacher should learn faster than the actor
     sess.run(tf.global_variables_initializer())
     if OUTPUT_GRAPH:
         tf.summary.FileWriter("logs/", sess.graph)
     for i_episode in range(MAX_EPISODE):
-        s = env.reset() #重置环境
+        s = env.reset()  # 重置环境
         t = 0
         track_r = []
         while True:
             if RENDER: env.render()
-            a = actor.choose_action(s)  #根据当前状态,actor选择一个action 即:actor与环境进行交互
-            s_, r, done, info = env.step(a) #根据actor选择的行为,进入下一个状态s_, 和立即回报r, 是否结束: done,
+            a = actor.choose_action(s)  # 根据当前状态,actor选择一个action 即:actor与环境进行交互
+            s_, r, done, info = env.step(a)  # 根据actor选择的行为,进入下一个状态s_, 和立即回报r, 是否结束: done,
             if done: r = -20
             track_r.append(r)
             td_error = critic.learn(s, r, s_)  # gradient = grad[r + gamma * V(s_) - V(s)]
-            actor.learn(s, a, td_error)     # true_gradient = grad[logPi(s,a) * td_error]
+            actor.learn(s, a, td_error)  # true_gradient = grad[logPi(s,a) * td_error]
 
             s = s_
             t += 1
